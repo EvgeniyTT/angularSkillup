@@ -1,0 +1,17 @@
+[
+  {
+    "label": "Panda",
+    "src": "/imgs/5.jpg",
+    "altText": "Image with a Panda"
+  },
+  {
+    "label": "Details",
+    "src": "/imgs/4.jpg",
+    "altText": "Image with a glass of green juice"
+  },
+  {
+    "label": "About Us",
+    "src": "/imgs/2.jpg",
+    "altText": "Image with eucalyptus leaves"
+  }
+]
