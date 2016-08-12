@@ -6,12 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // const config
 module.exports = {
-  context: path.join(__dirname, 'src'), // исходная директория
+  context: path.resolve('./src'), // исходная директория
   entry: {
     app: ['main/main.js']  // файл для сборки
   },
   output: {
-    path: path.join(__dirname, 'build'), // выходная директория
+    path: './build', // выходная директория
     filename: 'bundle.js'
   },
   module: {
@@ -25,10 +25,10 @@ module.exports = {
   plugins: [
     new CleanPlugin(['build']),
     new webpack.optimize.DedupePlugin(),
-    new HtmlWebpackPlugin({
-      template: './main/app.html',
-      inject: 'body'
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: './index.html',
+    //   inject: 'body'
+    // }),
     new webpack.DefinePlugin({
       API: JSON.stringify('http://localhost:3000')
     })
