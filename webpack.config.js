@@ -6,13 +6,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // const config
 module.exports = {
-  context: path.resolve('./src'), // исходная директория
-  entry: {
-    app: ['main/main.js']  // файл для сборки
-  },
+  context: path.resolve(__dirname, 'src'), // исходная директория
+  entry: './main.js',
   output: {
     path: './build', // выходная директория
-    filename: 'bundle.js'
+    filename: 'build.js'
   },
   module: {
     loaders: [
@@ -25,13 +23,18 @@ module.exports = {
   plugins: [
     new CleanPlugin(['build']),
     new webpack.optimize.DedupePlugin(),
+    new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
+    new ExtractTextPlugin("styles.css")
     // new HtmlWebpackPlugin({
     //   template: './index.html',
     //   inject: 'body'
     // }),
-    new webpack.DefinePlugin({
-      API: JSON.stringify('http://localhost:3000')
-    })
+    // new webpack.DefinePlugin({
+    //   API: JSON.stringify('http://localhost:3000')
+    // })
   ]
 };
 
