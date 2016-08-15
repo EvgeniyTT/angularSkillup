@@ -1,7 +1,6 @@
-module.exports = (function () {
-  let addImgForm = angular.module('addImgForm', ['imgCart']);
 
-  addImgForm.directive('ngAddImgForm', function () {
+export default angular.module('addImgForm', ['imgCart'])
+  .directive('ngAddImgForm', function () {
     return {
       restrict: 'E',
       templateUrl: '/src/addImgForm/addImgForm.html',
@@ -15,5 +14,4 @@ module.exports = (function () {
       },
       controllerAs: 'addImgCtrl'
     };
-  });
-})();
+  }).name;

@@ -40,59 +40,86 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
+/******/ ((function(modules) {
+	// Check all modules for deduplicated modules
+	for(var i in modules) {
+		if(Object.prototype.hasOwnProperty.call(modules, i)) {
+			switch(typeof modules[i]) {
+			case "function": break;
+			case "object":
+				// Module can be created from a template
+				modules[i] = (function(_m) {
+					var args = _m.slice(1), fn = modules[_m[0]];
+					return function (a,b,c) {
+						fn.apply(this, [a,b,c].concat(args));
+					};
+				}(modules[i]));
+				break;
+			default:
+				// Module is a copy of another module
+				modules[i] = modules[modules[i]];
+				break;
+			}
+		}
+	}
+	return modules;
+}([
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _angular = __webpack_require__(1);
+	__webpack_require__(1);
+
+	__webpack_require__(10);
+
+	var _angular = __webpack_require__(12);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _imgCart = __webpack_require__(3);
+	var _imgCart = __webpack_require__(14);
 
 	var _imgCart2 = _interopRequireDefault(_imgCart);
 
-	var _navbar = __webpack_require__(7);
+	var _navbar = __webpack_require__(18);
 
 	var _navbar2 = _interopRequireDefault(_navbar);
 
-	var _addImgForm = __webpack_require__(8);
+	var _addImgForm = __webpack_require__(19);
 
 	var _addImgForm2 = _interopRequireDefault(_addImgForm);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// angular.module('app', [ngNav, ngImgCart, ngAddImgForm]);
-
-
-	// require('./imgCart/index');
-	// require('./addImgForm/index');
-	// require('./navbar/index');
-
-
-	// import 'bootstrap/dist/css/bootstrap.css';
-	_angular2.default.module('app', [_navbar2.default, _imgCart2.default, 'addImgForm']);
-
-	// (function () {
-	//   require('./imgCart/imgCart');
-	//   require('./addImgForm/addImgForm');
-	//   require('./navbar/nav');
-	//
-	//   angular.module('app', ['nav', 'imgCart', 'addImgForm']);
-	// })();
+	_angular2.default.module('app', [_navbar2.default, _imgCart2.default, _addImgForm2.default]);
 
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
+1,
+/* 11 */,
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(2);
+	__webpack_require__(13);
 	module.exports = angular;
 
 
 /***/ },
-/* 2 */
+/* 13 */
 /***/ function(module, exports) {
 
 	/**
@@ -31865,7 +31892,7 @@
 	!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ },
-/* 3 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31874,15 +31901,15 @@
 	  value: true
 	});
 
-	var _angular = __webpack_require__(1);
+	var _angular = __webpack_require__(12);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _service = __webpack_require__(4);
+	var _service = __webpack_require__(15);
 
 	var _service2 = _interopRequireDefault(_service);
 
-	var _directive = __webpack_require__(5);
+	var _directive = __webpack_require__(16);
 
 	var _directive2 = _interopRequireDefault(_directive);
 
@@ -31891,7 +31918,7 @@
 	exports.default = _angular2.default.module('imgCart', []).service('imgService', ['$http', _service2.default]).directive('ngImgCart', ['imgService', _directive2.default]).name;
 
 /***/ },
-/* 4 */
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31926,7 +31953,7 @@
 	module.exports = imgService;
 
 /***/ },
-/* 5 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31935,7 +31962,7 @@
 	  value: true
 	});
 
-	var _controller = __webpack_require__(6);
+	var _controller = __webpack_require__(17);
 
 	var _controller2 = _interopRequireDefault(_controller);
 
@@ -31960,7 +31987,7 @@
 	// }
 
 /***/ },
-/* 6 */
+/* 17 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -32000,7 +32027,7 @@
 	exports.default = DirCtrl;
 
 /***/ },
-/* 7 */
+/* 18 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32029,30 +32056,29 @@
 	}).name;
 
 /***/ },
-/* 8 */
+/* 19 */
 /***/ function(module, exports) {
 
 	'use strict';
 
-	module.exports = function () {
-	  var addImgForm = angular.module('addImgForm', ['imgCart']);
-
-	  addImgForm.directive('ngAddImgForm', function () {
-	    return {
-	      restrict: 'E',
-	      templateUrl: '/src/addImgForm/addImgForm.html',
-	      controller: ["$scope", "imgService", function controller($scope, imgService) {
-	        this.addImg = function () {
-	          var img = {};
-	          img.src = $scope.src;
-	          img.label = $scope.description;
-	          imgService.add(img);
-	        };
-	      }],
-	      controllerAs: 'addImgCtrl'
-	    };
-	  });
-	}();
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = angular.module('addImgForm', ['imgCart']).directive('ngAddImgForm', function () {
+	  return {
+	    restrict: 'E',
+	    templateUrl: '/src/addImgForm/addImgForm.html',
+	    controller: ["$scope", "imgService", function controller($scope, imgService) {
+	      this.addImg = function () {
+	        var img = {};
+	        img.src = $scope.src;
+	        img.label = $scope.description;
+	        imgService.add(img);
+	      };
+	    }],
+	    controllerAs: 'addImgCtrl'
+	  };
+	}).name;
 
 /***/ }
-/******/ ]);
+/******/ ])));

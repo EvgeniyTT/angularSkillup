@@ -1,7 +1,8 @@
-// import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import './style.css';
 import ng from 'angular';
 import ngImgCart from './imgCart';
 import ngNav from './navbar';
 import ngAddImgForm from './addImgForm';
 
-ng.module('app', [ngNav, ngImgCart, 'addImgForm']);
+ng.module('app', [ngNav, ngImgCart, ngAddImgForm]);
