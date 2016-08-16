@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#">Gallery</a>
     </div>
     <ul class="nav navbar-nav">
-      <li ng-repeat="menu in navCtrl.menus" ng-class='{active:$first}'><a href="{{menu.href}}">{{menu.label}}</a></li>
+      <li ng-repeat="menu in navCtrl.menus"><a href="{{menu.href}}">{{menu.label}}</a></li>
     </ul>
   </div>
 </nav>
