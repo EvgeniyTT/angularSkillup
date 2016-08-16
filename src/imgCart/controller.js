@@ -1,7 +1,8 @@
 export default class DirCtrl {
   constructor(imgService, $scope) {
     this.imgService = imgService;
-    this.imgService.list();
+    imgService.imgs = this.imgService.list();
+    this.deleteConfirm = false;
 
     $scope.$watch(
       function watchChange(scope) { return imgService.imgs; },
@@ -9,7 +10,16 @@ export default class DirCtrl {
     );
   }
 
-  deleteImg(cart) {
-    this.imgService.remove(cart);
+  deleteImg() {
+    this.imgService.remove(this.currentImg);
+    this.hideConfirm();
+  }
+
+  showConfirm(img) {
+    this.currentImg = img;
+    this.deleteConfirm = true;
+  }
+  hideConfirm() {
+    this.deleteConfirm = false;
   }
 }

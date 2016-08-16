@@ -19,3 +19,39 @@ img {
   width: 1000px;
   height: 800px;
 }
+
+.img-details {
+  display: inline-block;
+}
+
+.imgDetailArrow {
+}
+
+.deleteConfirm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 100px;
+    margin-left:-250px;
+    margin-top:-50px;
+    border: 2px solid;
+    border-radius: 10px;
+    background-color: #c9cfe2;
+}
+
+.deleteConfirm div{
+  width: 100%;
+  text-align: center;
+}
+
+.deleteConfirm button{
+  margin: 20px 25px;
+}
+
+.deleteConfirm .removeBtn {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  margin: 0;
+}

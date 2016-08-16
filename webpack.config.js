@@ -17,7 +17,7 @@ module.exports = {
 			{ test: /\.html$/, loader: 'html?conservativeCollapse' },
 			{ test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
 			{ test: /\.(png|jpe?g|.gif)$/, loader: 'file?name=[path][name].[ext]' },
-      { test: /\.(woff2?|ttf|eot|svg)(.*)?$/, loader: 'file?name=fonts/[name].[ext]' },
+      { test: /\.(woff|woff2?|ttf|eot|svg)(.*)?$/, loader: 'file?name=fonts/[name].[ext]' },
     ]
   },
   plugins: [

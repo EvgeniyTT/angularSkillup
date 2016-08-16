@@ -1,6 +1,6 @@
 import ng from 'angular';
-import ImgDetailDrctv from './directive'
+import ImgDetailDrctv from './directive';
 
-export default ng.module('imgDetails', [])
-  .directive('ngImgDetails', ImgDetailDrctv)
+export default ng.module('imgDetails', ['imgCart'])
+  .directive('ngImgDetails', ['imgService', ImgDetailDrctv])
   .name;
