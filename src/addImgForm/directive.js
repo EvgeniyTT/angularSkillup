@@ -1,10 +1,10 @@
 import NgAddImgCtrl from './controller';
 
-export default (imgService, NgAddImgCtrl) => {
+export default (imgService) => {
   return {
     restrict: 'E',
     templateUrl: '/src/addImgForm/addImgForm.html',
-    controller: NgAddImgCtrl,
+    controller: ['imgService', '$scope', NgAddImgCtrl],
     controllerAs: 'addImgCtrl'
   };
 }

@@ -1,5 +1,5 @@
 export default class AddImgCtrl {
-  constructor($scope, imgService) {
+  constructor(imgService, $scope) {
     this.$scope = $scope;
     this.imgService = imgService;
   }

@@ -25,7 +25,7 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin('styles-[hash:4].css'),
     new HtmlWebpackPlugin({
-      template: './app.html',
+      template: './index.html',
       inject: 'body'
     }),
     // new webpack.DefinePlugin({

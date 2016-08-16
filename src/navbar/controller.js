@@ -2,15 +2,15 @@ export default function() {
   this.menus = [
     {
       label: 'All Images',
-      href: '#'
+      href: '#/allImages'
     },
     {
       label: 'Details',
-      href: 'https://docs.angularjs.org/api/ng/directive/ngSubmit'
+      href: '#/details'
     },
     {
       label: 'About Us',
-      href: '#'
+      href: '#/aboutUs'
     }
   ];
 }

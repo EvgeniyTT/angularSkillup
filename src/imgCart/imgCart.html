@@ -1,5 +1,7 @@
-<div class="container-fluid in-list" ng-repeat="img in imgs">
-  <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}"/>
-  <p>{{img.label}}</p>
-  <button type="button" class="btn btn-primary" ng-click="imgCartCtrl.deleteImg(this)">Delete Image</button>
+<div class="gallery-list">
+  <div class="container-fluid in-list" ng-repeat="img in imgs">
+    <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}"/>
+    <p>{{img.label}}</p>
+    <button type="button" class="btn btn-primary" ng-click="imgCartCtrl.deleteImg(this)">Delete Image</button>
+  </div>
 </div>
