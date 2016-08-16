@@ -1,19 +1,11 @@
+
 import DirCtrl from './controller';
 
-export default imgService => {
+export default (imgService) => {
   return {
     restrict: 'A',
     templateUrl: '/src/imgCart/imgCart.html',
-    controller: DirCtrl,
+    controller: ['imgService', '$scope', DirCtrl],
     controllerAs: 'imgCartCtrl'
   };
 };
-
-// export default class imgController {
-//   constructor(imgService) {
-//     this.restrict = 'A';
-//     this.templateUrl = '/src/imgCart/imgCart.html';
-//     this.controllerAs = 'imgCartCtrl';
-//     this.controller = $scope => new DirCtrl(imgService, $scope);
-//   }
-// }

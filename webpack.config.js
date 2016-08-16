@@ -4,13 +4,12 @@ const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// const config
 module.exports = {
-  context: path.resolve(__dirname, 'src'), // исходная директория
+  context: path.resolve(__dirname, 'src'), // source directory
   entry: './main.js',
   output: {
-    path: './build', // выходная директория
-    filename: 'build.js'
+    path: './build', // output directory
+    filename: 'build-[hash:4].js'
   },
   module: {
     loaders: [
@@ -24,22 +23,13 @@ module.exports = {
   plugins: [
     new CleanPlugin(['build']),
     new webpack.optimize.DedupePlugin(),
-    new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        }),
-    new ExtractTextPlugin("styles.css")
-    // new HtmlWebpackPlugin({
-    //   template: './index.html',
-    //   inject: 'body'
-    // }),
+    new ExtractTextPlugin('styles-[hash:4].css'),
+    new HtmlWebpackPlugin({
+      template: './app.html',
+      inject: 'body'
+    }),
     // new webpack.DefinePlugin({
     //   API: JSON.stringify('http://localhost:3000')
     // })
   ]
 };
-
-// const compiler = webpack(config);
-// compiler.run(function logger(err, stats) {
-//   console.log(stats.toJson()); // по завершению, выводим всю статистику
-// });

@@ -7,7 +7,7 @@ export default class imgService {
     this.imgs.push(img);
   }
   list() {
-    return this.$http.get('/src/imgs.json').success(data => this.imgs = data);
+    return this.$http.get('/src/assets/imgs.json').success(data => this.imgs = data);
   }
   remove(cart) {
     this.imgs = this.imgs.filter(obj => obj.src !== cart.img.src);
