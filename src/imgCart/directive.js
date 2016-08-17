@@ -5,7 +5,7 @@ export default (imgService) => {
   return {
     restrict: 'E',
     templateUrl: '/src/imgCart/imgCart.html',
-    controller: ['imgService', '$scope', DirCtrl],
+    controller: ['imgService', '$scope', '$location', DirCtrl],
     controllerAs: 'imgCartCtrl'
   };
 };

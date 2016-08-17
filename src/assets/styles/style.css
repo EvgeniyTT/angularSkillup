@@ -10,18 +10,38 @@ body {
   margin-bottom: 40px;
 }
 
+.in-list img {
+  cursor: pointer;
+}
+
 img {
   height: 80%;
   width: 80%;
 }
 
 .details {
-  width: 1000px;
-  height: 800px;
+  width: 700px;
+  height: 600px;
 }
 
 .img-details {
   display: inline-block;
+}
+
+.imgDetailInfo {
+  margin-top: 20px;
+  margin-left: 70px;
+  padding: 20px;
+  width: 540px;
+  height: 160px;
+  border: 2px solid;
+  border-radius: 10px;
+  background-color: #c9cfe2;
+  word-wrap: break-word;
+}
+
+.imgDetailInfo p {
+  width: 100%;
 }
 
 .imgDetailArrow {
@@ -32,7 +52,7 @@ img {
     top: 50%;
     left: 50%;
     width: 500px;
-    height: 100px;
+    height: 130px;
     margin-left:-250px;
     margin-top:-50px;
     border: 2px solid;

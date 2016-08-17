@@ -2,5 +2,11 @@
   <button class="imgDetailArrow btn btn-primary" ng-click="imgDetailsCtrl.prevImg()" ng-disabled="imgDetailsCtrl.firstImg" glyphicon glyphicon-chevron-left>Prev</button>
   <img ng-src="{{img.src}}" class="img-rounded img-details" alt="{{img.altText}}"/>
   <button class="imgDetailArrow btn btn-primary" ng-click="imgDetailsCtrl.nextImg()" ng-disabled="imgDetailsCtrl.lastImg" glyphicon glyphicon-chevron-right>Next</button>
-  <p>{{img.label}}</p>
+
+  <div class="imgDetailInfo">
+    <p><b>Description:</b> {{img.label}}</p>
+    <p><b>Source:</b> {{img.src}}</p>
+    <p><b>Date added:</b> {{img.dateAdded}}</p>
+  </div>
+
 </div>

@@ -1,6 +1,6 @@
 import NgAddImgCtrl from './controller';
 
-export default (imgService) => {
+export default imgService => {
   return {
     restrict: 'E',
     templateUrl: '/src/addImgForm/addImgForm.html',

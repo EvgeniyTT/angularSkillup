@@ -4,39 +4,45 @@ export default class imgDetailCtrl {
     this.$scope = $scope;
     this.imgService = imgService;
     this.setFirstImg();
-    this.firstImg = true;
-    this.lastImg = false;
   }
 
   setFirstImg() {
-    this.$scope.img = this.imgService.list()[0];
+    this.$scope.img = this.imgService.imgToShow;
+    this.firstImg = this.isFirstImg();
+    this.lastImg = this.isLastImg();
+  }
+
+  getCurImgIndex() {
+    const imgs = this.imgService.list();
+    const currentImgIndex = imgs.findIndex(img => img.src === this.$scope.img.src);
+    return [imgs, currentImgIndex];
+  }
+
+  isFirstImg() {
+    const [imgs, currentImgIndex] = this.getCurImgIndex();
+    return currentImgIndex === 0;
+  }
+
+  isLastImg() {
+    const [imgs, currentImgIndex] = this.getCurImgIndex();
+    return currentImgIndex === imgs.length - 1;
   }
 
   nextImg() {
-    const imgs = this.imgService.list();
-    const currentImgIndex = imgs.findIndex(img => img.src === this.$scope.img.src);
-    if (currentImgIndex !== imgs.length - 1) {
+    const [imgs, currentImgIndex] = this.getCurImgIndex();
+    if (!this.isLastImg()) {
       this.$scope.img = imgs[currentImgIndex + 1];
-      if (currentImgIndex === 0) {
-        this.firstImg = false;
-      }
-      if (currentImgIndex === imgs.length - 2) {
-        this.lastImg = true;
-      }
+      this.firstImg = this.isFirstImg();
+      this.lastImg = this.isLastImg();
     }
   }
 
   prevImg() {
-    const imgs = this.imgService.list();
-    const currentImgIndex = imgs.findIndex(img => img.src === this.$scope.img.src);
-    if (currentImgIndex !== 0) {
+    const [imgs, currentImgIndex] = this.getCurImgIndex();
+    if (!this.isFirstImg()) {
       this.$scope.img = imgs[currentImgIndex - 1];
-      if (currentImgIndex === 1) {
-        this.firstImg = true;
-      }
-      if (currentImgIndex === imgs.length - 1) {
-        this.lastImg = false;
-      }
+      this.firstImg = this.isFirstImg();
+      this.lastImg = this.isLastImg();
     }
   }
 }
