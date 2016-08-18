@@ -2,7 +2,7 @@ export default function() {
   this.menus = [
     {
       label: 'All Images',
-      href: '#/allImages'
+      href: '#/images'
     },
     {
       label: 'Details',
@@ -10,7 +10,7 @@ export default function() {
     },
     {
       label: 'About Us',
-      href: '#/aboutUs'
+      href: '#/about'
     }
   ];
 }

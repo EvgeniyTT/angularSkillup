@@ -1,9 +1,8 @@
 export default class DirCtrl {
   constructor(imgService, $scope, $location) {
+    'ngInject';
     this.$location = $location;
     this.imgService = imgService;
-    this.imgService.imgs = this.imgService.list();
-    this.imgService.imgToShow = this.imgService.list()[0];
     this.deleteConfirm = false;
 
     $scope.$watch(
@@ -27,8 +26,6 @@ export default class DirCtrl {
   }
 
   showDetails(card) {
-    this.imgService.imgToShow = card.img;
-    this.$location.path('/details');
-    // document.querySelector('.nav a[href="#/details"]').parentNode.setAttribute('class', 'active');
+    this.$location.url('/details/' + card.img.id);
   }
 }

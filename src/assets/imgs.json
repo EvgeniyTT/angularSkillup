@@ -1,53 +1,62 @@
 [
   {
+    "id": 1,
     "label": "Panda",
     "src": "/src/assets/imgs/5.jpg",
     "altText": "Image with a Panda",
     "dateAdded": "05/07/2016"
   },
   {
+    "id": 2,
     "label": "Eye",
     "src": "http://upload.wikimedia.org/wikipedia/commons/6/6b/HD_107146_falsecolour.jpg",
     "altText": "Eye",
     "dateAdded": "05/07/2016"
   },
   {
+    "id": 3,
     "label": "Forest",
     "src": "http://luxfon.com/images/201203/luxfon.com_11437.jpg",
     "altText": "Forest",
     "dateAdded": "05/07/2016"
   },
   {
+    "id": 4,
     "label": "Art",
     "src": "https://www.ucl.ac.uk/news/news-articles/1213/muscle-fibres-heart.jpg",
     "altText": "Art",
     "dateAdded": "05/07/2016"
   },
   {
+    "id": 5,
     "label": "Ducks",
     "src": "http://67.media.tumblr.com/4c385b82831cf51ee3a20afbcbca3ab1/tumblr_obhsyys4oD1r1thfzo8_500.jpg",
     "altText": "Ducks",
     "dateAdded": "05/07/2016"
   },
   {
+    "id": 6,
     "label": "Kitty",
     "src": "http://www.isharearena.com/wp-content/uploads/2012/12/wallpaper-281049.jpg?d54e04",
     "altText": "Kitty",
     "dateAdded": "05/07/2016"
   },
   {
+    "id": 7,
     "label": "BodyArt",
     "src": "http://s6.pikabu.ru/post_img/big/2014/03/12/8/1394626729_1523042754.jpg",
     "altText": "BodyArt",
     "dateAdded": "05/07/2016"
   },
   {
+    "id": 8,
     "label": "Travel",
     "src": "http://www.gettyimages.com/gi-resources/images/HomepageCurationTiles/CREATIVE/01AUG2016/summerroadtrip_GettyImages-533765069.jpg",
     "altText": "Travel",
     "dateAdded": "05/07/2016"
   },
   {
+    "id": 9,
     "label": "Hand",
     "src": "https://c2.staticflickr.com/8/7023/6814375453_97a45a4f8e.jpg",
     "altText": "Hand",

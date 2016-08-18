@@ -1,6 +1,6 @@
 import ng from 'angular';
-import NgAddImgDrctv from './directive';
+import NgAddImgDrctv from './addImgForm.directive';
 
 export default ng.module('addImgForm', ['imgCart'])
-  .directive('ngAddImgForm', ['imgService', NgAddImgDrctv])
+  .directive('ngAddImgForm', NgAddImgDrctv)
   .name;
