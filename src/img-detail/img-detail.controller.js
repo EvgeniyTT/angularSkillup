@@ -1,27 +1,24 @@
 export default class imgDetailCtrl {
 
-  constructor($scope, imgService, $routeParams, $location) {
+  constructor(imgService, $routeParams, $location) {
     'ngInject';
-    console.log('ctrl');
-    this.$scope = $scope;
-    this.imgService = imgService;
     this.$routeParams = $routeParams;
     this.$location = $location;
-
-    $scope.$watch(
-      function watchChange(scope) { return imgService.imgs; },
-      (function handleChange() {
-        if (!$routeParams.id) {
-            $location.url('/details/' + imgService.imgs[0].id);
-          }
-        $scope.img = imgService.imgs.filter(img => {return img.id == $routeParams.id})[0];
-        this.setFirstAndLast();
-      }).bind(this)
-    );
+    this.imgService = imgService;
+    this.imgs = this.imgService.imgs;
+    this.imgService.refresh();
+    this.imgService.list().success(imgs => {
+      if (!$routeParams.id) {
+        $location.url(`/details/${imgs[0].id}`);
+        return; // reload page with first image's id in URL
+      }
+      this.img = imgs.filter(img => { return img.id == $routeParams.id })[0];
+      this.setFirstAndLast();
+    });
   }
 
   changeImgUrl() {
-    this.$location.url('/details/' + this.$scope.img.id);
+    this.$location.url(`/details/${this.img.id}`);
   }
 
   setFirstAndLast() {
@@ -30,8 +27,8 @@ export default class imgDetailCtrl {
   }
 
   getCurImgIndex() {
-    const imgs = this.imgService.imgs;
-    const currentImgIndex = imgs.findIndex(img => { return img.id == this.$scope.img.id } );
+    const imgs = this.imgs;
+    const currentImgIndex = imgs.findIndex(img => { return img.id == this.img.id } );
     return [imgs, currentImgIndex];
   }
 
@@ -48,7 +45,7 @@ export default class imgDetailCtrl {
   nextImg() {
     const [imgs, currentImgIndex] = this.getCurImgIndex();
     if (!this.isLastImg()) {
-      this.$scope.img = imgs[currentImgIndex + 1];
+      this.img = imgs[currentImgIndex + 1];
       this.setFirstAndLast();
       this.changeImgUrl();
     }
@@ -57,7 +54,7 @@ export default class imgDetailCtrl {
   prevImg() {
     const [imgs, currentImgIndex] = this.getCurImgIndex();
     if (!this.isFirstImg()) {
-      this.$scope.img = imgs[currentImgIndex - 1];
+      this.img = imgs[currentImgIndex - 1];
       this.setFirstAndLast();
       this.changeImgUrl();
     }

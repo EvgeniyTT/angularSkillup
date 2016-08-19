@@ -1,0 +1,17 @@
+<div class="gallery-list">
+  <div class="container-fluid in-list" ng-repeat="img in imgCardCtrl.imgs">
+    <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}" ng-click="imgCardCtrl.showDetails(this)"/>
+    <p>{{img.label}}</p>
+    <button type="button" class="btn btn-primary" ng-click="imgCardCtrl.showConfirm(this)">Delete Image</button>
+  </div>
+  <div class="deleteConfirm" ng-show="imgCardCtrl.deleteConfirm">
+    <div class="container">
+      <button class="removeBtn" ng-click="imgCardCtrl.hideConfirm()"><span glyphicon glyphicon-remove></span>X</button>
+      <br/>
+      <span>Are you sure want to delete this image?</span>
+      <br/>
+      <button class="btn btn-danger" ng-click="imgCardCtrl.deleteImg()">Yes</button>
+      <button class="btn btn-success" ng-click="imgCardCtrl.hideConfirm()">No</button>
+    </div>
+  </div>
+</div>

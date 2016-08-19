@@ -1,18 +1,16 @@
 export default class DirCtrl {
-  constructor(imgService, $scope, $location) {
+  constructor(imgService, $location, $routeParams) {
     'ngInject';
     this.$location = $location;
     this.imgService = imgService;
+    this.imgs = this.imgService.imgs;
+    this.$routeParams = $routeParams;
     this.deleteConfirm = false;
-
-    $scope.$watch(
-      function watchChange(scope) { return imgService.imgs; },
-      function handleChange() { $scope.imgs = imgService.imgs; }
-    );
+    this.imgService.refresh();
   }
 
   deleteImg() {
-    this.imgService.remove(this.currentImg);
+    this.imgService.remove(this.currentImg.img.id);
     this.hideConfirm();
   }
 
