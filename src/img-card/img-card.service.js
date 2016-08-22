@@ -17,12 +17,22 @@ export default class imgService {
     this.$http.post('http://localhost:3000/imgs', img).success(() => { this.refresh(); });
   }
 
-  remove(id) {
-    this.$http.delete(`http://localhost:3000/imgs/${id}`).success(() => { this.refresh(); });
+  update(id, imgData) {
+    this.$http.put(`http://localhost:3000/imgs/${id}`, imgData).success(() => { this.refresh(); });
   }
 
-  update(img) {
-    this.$http.put('/src/assets/imgs.json').success(() => { this.refresh(); });
+  save(img) {
+    this.get(`?src=${img.src}`).then((response) => {
+      if (response.data.length !== 0) {
+        this.update(response.data[0].id, img);
+      } else {
+        this.add(img);
+      }
+    });
+  }
+
+  remove(id) {
+    this.$http.delete(`http://localhost:3000/imgs/${id}`).success(() => { this.refresh(); });
   }
 
   list() {

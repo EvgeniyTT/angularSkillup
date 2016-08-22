@@ -12,6 +12,6 @@ export default class addImgService {
     image.id = this.newId;
     let curDate = new Date();
     image.dateAdded = [curDate.getMonth() + 1, curDate.getDate(), curDate.getFullYear()].join('/');
-    this.imgService.add(image);
+    this.imgService.save(image);
   }
 }
