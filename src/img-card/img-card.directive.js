@@ -5,5 +5,5 @@ export default () => ({
   restrict: 'E',
   template,
   controller,
-  controllerAs: 'imgCardCtrl'
+  controllerAs: 'imgCardController'
 });

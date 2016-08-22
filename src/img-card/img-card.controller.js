@@ -1,4 +1,4 @@
-export default class DirCtrl {
+export default class NgImageCardController {
   constructor(imgService, $location, $routeParams) {
     'ngInject';
     this.$location = $location;
@@ -11,15 +11,15 @@ export default class DirCtrl {
 
   deleteImg() {
     this.imgService.remove(this.currentImg.img.id);
-    this.hideConfirm();
+    this.hideConfirmMessage();
   }
 
-  showConfirm(img) {
+  showConfirmMessage(img) {
     this.currentImg = img;
     this.deleteConfirm = true;
   }
 
-  hideConfirm() {
+  hideConfirmMessage() {
     this.deleteConfirm = false;
   }
 

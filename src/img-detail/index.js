@@ -1,8 +1,8 @@
 import ng from 'angular';
-import ImgDetailDrctv from './img-detail.directive';
-import NgImageDetailService from './img-detail.service';
+import NgImgDetailDirective from './img-detail.directive';
+import NgImgDetailService from './img-detail.service';
 
 export default ng.module('imgDetail', ['imgCard'])
-  .directive('ngImgDetails', ['imgService', ImgDetailDrctv])
-  .service('imgDetailService', NgImageDetailService)
+  .directive('ngImgDetails', NgImgDetailDirective)
+  .service('imgDetailService', NgImgDetailService)
   .name;

@@ -15,7 +15,7 @@ export default class imgDetailService {
         this.$location.url(`/details/${imgs[0].id}`);
         return; // reload page with first image's id in URL
       }
-      const image = imgs.filter(img => { return img.id == this.$routeParams.id })[0];
+      const image = imgs.filter(img => { return img.id == this.$routeParams.id; })[0];
       for (let attrname in image) { this.img[attrname] = image[attrname]; }
     });
   }
@@ -30,7 +30,7 @@ export default class imgDetailService {
 
   getCurImgIndex() {
     const imgs = this.imgs;
-    const currentImgIndex = imgs.findIndex(img => { return img.id == this.$routeParams.id } );
+    const currentImgIndex = imgs.findIndex(img => { return img.id == this.$routeParams.id; } );
     return [imgs, currentImgIndex];
   }
 
@@ -44,7 +44,7 @@ export default class imgDetailService {
     return currentImgIndex === imgs.length - 1;
   }
 
-  nextImg() {
+  nextImage() {
     const [imgs, currentImgIndex] = this.getCurImgIndex();
     if (!this.isLastImg()) {
       this.img = imgs[currentImgIndex + 1];
@@ -53,7 +53,7 @@ export default class imgDetailService {
     }
   }
 
-  prevImg() {
+  prevImage() {
     const [imgs, currentImgIndex] = this.getCurImgIndex();
     if (!this.isFirstImg()) {
       this.img = imgs[currentImgIndex - 1];

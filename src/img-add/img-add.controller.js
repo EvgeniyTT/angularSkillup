@@ -1,4 +1,4 @@
-export default class AddImgCtrl {
+export default class NgImageAddController {
   constructor(imgAddService) {
     'ngInject';
     this.imgAddService = imgAddService;

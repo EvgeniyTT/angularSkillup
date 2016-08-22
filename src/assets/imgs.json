@@ -93,6 +93,12 @@
       "label": "Lamborghini",
       "id": 24,
       "dateAdded": "8/22/2016"
+    },
+    {
+      "src": "http://www.seriouswheels.com/pics-2007/2007-Koenigsegg-CCX-Instrument-Cluster-1280x960.jpg",
+      "label": "Panel",
+      "id": 25,
+      "dateAdded": "8/22/2016"
     }
   ]
 }

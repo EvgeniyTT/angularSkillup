@@ -1,16 +1,16 @@
 <div class="details">
-  <button class="imgDetailArrow btn btn-primary" ng-click="imgDetailsCtrl.prevImg()" ng-disabled="imgDetailsCtrl.firstImg">
+  <button class="imgDetailArrow btn btn-primary" ng-click="imgDetailController.prevImage()" ng-disabled="imgDetailController.firstImg">
     <span class="glyphicon glyphicon-chevron-left"></span>
   </button>
-  <img ng-src="{{imgDetailsCtrl.img.src}}" class="img-rounded img-details" alt="{{imgDetailsCtrl.img.altText}}"/>
-  <button class="imgDetailArrow btn btn-primary" ng-click="imgDetailsCtrl.nextImg()" ng-disabled="imgDetailsCtrl.lastImg">
+  <img ng-src="{{imgDetailController.img.src}}" class="img-rounded img-details" alt="{{imgDetailController.img.altText}}"/>
+  <button class="imgDetailArrow btn btn-primary" ng-click="imgDetailController.nextImage()" ng-disabled="imgDetailController.lastImg">
     <span class="glyphicon glyphicon-chevron-right"></span>
   </button>
 
   <div class="imgDetailInfo">
-    <p><b>Description:</b> {{imgDetailsCtrl.img.label}}</p>
-    <p><b>Source:</b> {{imgDetailsCtrl.img.src}}</p>
-    <p><b>Date added:</b> {{imgDetailsCtrl.img.dateAdded}}</p>
+    <p><b>Description:</b> {{imgDetailController.img.label}}</p>
+    <p><b>Source:</b> {{imgDetailController.img.src}}</p>
+    <p><b>Date added:</b> {{imgDetailController.img.dateAdded}}</p>
   </div>
 
 </div>

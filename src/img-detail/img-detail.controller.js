@@ -1,5 +1,4 @@
-export default class imgDetailCtrl {
-
+export default class NgImageDetailController {
   constructor(imgDetailService) {
     'ngInject';
     this.imgDetailService = imgDetailService;
@@ -8,11 +7,11 @@ export default class imgDetailCtrl {
     [this.firstImg, this.lastImg] = this.imgDetailService.setIfFirstOrLastImg();
   }
 
-  nextImg() {
-    this.imgDetailService.nextImg();
+  nextImage() {
+    this.imgDetailService.nextImage();
   }
 
-  prevImg() {
-    this.imgDetailService.prevImg();
+  prevImage() {
+    this.imgDetailService.prevImage();
   }
 }

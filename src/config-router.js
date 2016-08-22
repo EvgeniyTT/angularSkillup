@@ -4,7 +4,7 @@ export default $routeProvider => {
     template: `<h1>All Images</h1></br>
               <ng-img-gallery></ng-img-gallery>
               <hr/>
-              <ng-add-img-form></ng-add-img-form>`
+              <ng-img-add-form></ng-img-add-form>`
   })
   .when('/details/:id?', {
     template: '<ng-img-details></ng-img-details>'
