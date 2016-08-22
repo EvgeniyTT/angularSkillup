@@ -1,12 +1,17 @@
-<form name="addImgForm">
+<form ng-submit="addImgController.addImg()" name="addImgForm">
   <h4>Please fill up the following fields to add a photo</h4>
   <fieldset class="form-group">
-    <input ng-model="addImgController.src" class="form-control" placeholder="Write a photo's source path. It can be as a local path, as a reference to another resource" title="addImgController.src" required/>
+    <input ng-model="addImgController.src" type="text" class="form-control" name="src"
+    placeholder="Write a photo's source path. It can be as a local path, as a reference to another resource"
+    title="addImgController.src" required />
+    <span ng-show="form.src.$dirty && form.src.$error.required">Email is required</span>
   </fieldset>
   <fieldset class="form-group">
-    <textarea ng-model="addImgController.description" type="text" class="form-control" placeholder="Add some description to your photo..." title="addImgController.description" required></textarea>
+    <textarea ng-model="addImgController.description" type="text" class="form-control"
+    placeholder="Add some description to your photo..." title="addImgController.description" required>
+    </textarea>
   </fieldset>
   <fieldset class="form-group">
-    <input type="submit" class="btn btn-primary pull-right" ng-click="addImgController.addImg()" value="Add a Photo" />
+    <button type="submit" class="btn btn-primary pull-right">Add a Photo</button>
   </fieldset>
 </form>
