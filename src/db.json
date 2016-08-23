@@ -1,13 +1,6 @@
 {
   "imgs": [
     {
-      "id": 1,
-      "label": "Panda",
-      "src": "/src/assets/imgs/5.jpg",
-      "altText": "Image with a Panda",
-      "dateAdded": "5/7/2016"
-    },
-    {
       "id": 5,
       "label": "Ducks",
       "src": "http://67.media.tumblr.com/4c385b82831cf51ee3a20afbcbca3ab1/tumblr_obhsyys4oD1r1thfzo8_500.jpg",
@@ -83,16 +76,70 @@
       "dateAdded": "8/22/2016"
     },
     {
-      "src": "http://cdn.pinthiscars.com/images/lamborghini-logo-wallpaper-3d-wallpaper-2.jpg",
-      "label": "Lamborghini",
-      "id": 24,
-      "dateAdded": "8/22/2016"
+      "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ5kdRdfkivNe69u8tNRNFyuqAHnxb_nFSZFUIAeljqA3IRaJG5Tg",
+      "label": "Baba",
+      "dateAdded": "8/23/2016",
+      "id": 26
     },
     {
-      "src": "http://www.seriouswheels.com/pics-2007/2007-Koenigsegg-CCX-Instrument-Cluster-1280x960.jpg",
-      "label": "Panel",
-      "id": 25,
-      "dateAdded": "8/22/2016"
+      "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSIKUSa4KfVjYRBz3Mzi5CUYUkhGq9sIqoMxo08uQtaJHKeoc-O",
+      "description": "Bridge",
+      "dateAdded": "8/23/2016",
+      "id": 27
+    },
+    {
+      "src": "http://downloadwallpaper.org/wp-content/uploads/2016/05/1080p-hd-wallpapers1-1024x576.jpg",
+      "description": "Ball",
+      "dateAdded": "8/23/2016",
+      "id": 28
+    },
+    {
+      "src": "http://wallpaper.zone/thumb/1854998.jpg",
+      "description": "ewghwehrth",
+      "dateAdded": "8/23/2016",
+      "id": 29
+    },
+    {
+      "src": "http://hdwallpapershdpics.com/wp-content/uploads/2016/06/wallpaper-hd-1080p-6.jpg",
+      "description": "Lion",
+      "dateAdded": "8/23/2016",
+      "id": 30
+    },
+    {
+      "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRUhrJohLhTxKm6DSbGM4rJOyQN8Lh08sgHcof5WyBfxNT5iuqbtA",
+      "description": "h",
+      "dateAdded": "8/23/2016",
+      "id": 35
+    },
+    {
+      "src": "http://www.hdwallwide.com/wp-content/uploads/2015/08/best-HD-lonely-wallpapers-1080p-hdwallwide.com_.jpg",
+      "description": "Girl",
+      "dateAdded": "8/23/2016",
+      "id": 36
+    },
+    {
+      "src": "http://chainimage.com/images/wallpaper-wide-1-wallpaper1-wallpapers-21-wallpapers-23-wallpapers.jpg",
+      "description": "Apple",
+      "dateAdded": "8/23/2016",
+      "id": 37
+    },
+    {
+      "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTmdQedgX2zaOsGbt11ciPILCjkck3YCDZIru0Ft_uM3whr3RApKA",
+      "description": "Monster",
+      "dateAdded": "8/23/2016",
+      "id": 38
+    },
+    {
+      "src": "http://cdn.wonderfulengineering.com/wp-content/uploads/2013/12/hd-wallpaper-desktop-5-610x323.jpg",
+      "description": "WaterFire",
+      "dateAdded": "8/23/2016",
+      "id": 39
+    },
+    {
+      "src": "http://hdwpro.com/wp-content/uploads/2016/05/Fantastic-Best-Sayings-on-Love.jpeg",
+      "description": "Love",
+      "dateAdded": "8/23/2016",
+      "id": 40
     }
   ]
 }

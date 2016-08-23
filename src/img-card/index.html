@@ -1,7 +1,10 @@
+<h1>All Images</h1></br>
 <div class="gallery-list">
   <div class="container-fluid in-list" ng-repeat="img in imgCardController.imgs">
-    <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}" ng-click="imgCardController.showDetails(this)"/>
-    <p>{{img.label}}</p>
+    <a href="#/details/{{img.id}}">
+      <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}" ng-click="imgCardController.showDetails(this)"/>
+    </a>
+    <p>{{img.description}}</p>
     <button type="button" class="btn btn-primary" ng-click="imgCardController.showConfirmMessage(this)">Delete Image</button>
   </div>
   <div class="deleteConfirm" ng-show="imgCardController.deleteConfirm">
@@ -14,4 +17,6 @@
       <button class="btn btn-success" ng-click="imgCardController.hideConfirmMessage()">No</button>
     </div>
   </div>
+  <hr/>
+  <ng-img-add-form></ng-img-add-form>
 </div>

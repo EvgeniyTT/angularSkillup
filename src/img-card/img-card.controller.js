@@ -1,16 +1,20 @@
 export default class NgImageCardController {
-  constructor(imgService, $location, $routeParams) {
+  constructor(imgService, $scope) {
     'ngInject';
-    this.$location = $location;
     this.imgService = imgService;
-    this.imgs = this.imgService.imgs;
-    this.$routeParams = $routeParams;
+    this.$scope = $scope;
     this.deleteConfirm = false;
-    this.imgService.refresh();
+    this.$scope.$on('imageAdded', () => { this.$onInit(); });
+  }
+
+  $onInit() {
+    this.imgService.list().then((db) => { this.imgs = db.data; });
   }
 
   deleteImg() {
-    this.imgService.remove(this.currentImg.img.id);
+    this.imgService.remove(this.currentImg.img.id)
+                    .then(() => { return this.imgService.list() })
+                    .then((db) => { this.imgs = db.data; });
     this.hideConfirmMessage();
   }
 
@@ -21,9 +25,5 @@ export default class NgImageCardController {
 
   hideConfirmMessage() {
     this.deleteConfirm = false;
-  }
-
-  showDetails(card) {
-    this.$location.url('/details/' + card.img.id);
   }
 }

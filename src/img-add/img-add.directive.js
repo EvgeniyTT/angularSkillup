@@ -5,5 +5,12 @@ export default () => ({
   restrict: 'E',
   template,
   controller,
-  controllerAs: 'addImgController'
+  controllerAs: 'addImgController',
+  // require: '^^imgCard',
+  // link: function(scope, element, attrs, imgCardController) {
+  //   scope.$on('save', function() {
+  //     console.log(imgCardController);
+  //     imgCardController.$onInit();
+  //   })
+  // }
 });

@@ -1,10 +1,8 @@
-export default $routeProvider => {
+export default ($routeProvider) => {
+  'ngInject';
   $routeProvider
   .when('/images', {
-    template: `<h1>All Images</h1></br>
-              <ng-img-gallery></ng-img-gallery>
-              <hr/>
-              <ng-img-add-form></ng-img-add-form>`
+    template: '<ng-img-gallery></ng-img-gallery>'
   })
   .when('/details/:id?', {
     template: '<ng-img-details></ng-img-details>'
