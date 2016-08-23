@@ -5,6 +5,7 @@ export default class imgDetailService {
     this.$routeParams = $routeParams;
     this.$location = $location;
     this.imgService = imgService;
+    this.imgService.refresh();
     this.imgs = this.imgService.imgs;
     this.img = {};
   }
