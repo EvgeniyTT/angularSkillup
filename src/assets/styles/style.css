@@ -85,3 +85,12 @@ img.img-details {
   top: 5px;
   margin: 0;
 }
+
+.error-messages.ng-active {
+  background: maroon;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 15px;
+  position: relative;
+}

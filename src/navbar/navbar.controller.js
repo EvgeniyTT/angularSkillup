@@ -5,10 +5,6 @@ export default function() {
       href: '#/images'
     },
     {
-      label: 'Details',
-      href: '#/details'
-    },
-    {
       label: 'About Us',
       href: '#/about'
     }

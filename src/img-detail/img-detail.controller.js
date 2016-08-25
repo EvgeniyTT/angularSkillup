@@ -1,17 +1,40 @@
 export default class NgImageDetailController {
-  constructor(imgDetailService) {
+  constructor($routeParams, $location, imgService) {
     'ngInject';
-    this.imgDetailService = imgDetailService;
-    this.img = this.imgDetailService.img;
-    this.imgDetailService.showImage();
-    [this.firstImg, this.lastImg] = this.imgDetailService.setIfFirstOrLastImg();
+    this.$routeParams = $routeParams;
+    this.$location = $location;
+    this.imgService = imgService;
+    this.img = {};
+    this.prevImg = {};
+    this.nextImg = {};
+  }
+
+  $onInit() {
+    this.imgService.get(this.$routeParams.id).then((db) => { this.img = db.data; });
+    this.setPagination();
+  }
+
+  setPagination() {
+    this.imgService.list().then((db) => {
+      const images = db.data;
+      const currentImageIndex = images.findIndex(img => { return img.id == this.$routeParams.id; });
+      this.firstImg = currentImageIndex === 0;
+      this.lastImg = currentImageIndex === images.length - 1;
+      this.prevImg = images[currentImageIndex - 1];
+      this.nextImg = images[currentImageIndex + 1];
+    });
   }
 
   nextImage() {
-    this.imgDetailService.nextImage();
+    if(!this.lastImg) {
+      this.$location.url(`/details/${this.nextImg.id}`);
+    }
   }
 
   prevImage() {
-    this.imgDetailService.prevImage();
+    if(!this.firstImg) {
+      this.$location.url(`/details/${this.prevImg.id}`);
+    }
   }
+
 }
