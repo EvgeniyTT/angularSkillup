@@ -5,28 +5,29 @@ export default class imgService {
   }
 
   add(img) {
-    return this.$http.post('http://localhost:3000/imgs', img);
+    return this.$http.post('http://10.10.54.24:3000/imgs', img);
   }
 
   update(id, imgData) {
-    return this.$http.put(`http://localhost:3000/imgs/${id}`, imgData);
+    return this.$http.put(`http://10.10.54.24:3000/imgs/${id}`, imgData);
   }
 
   save(img) {
-    return this.get(img.id).then(() => { return this.update(img.id, img); },
-                                 () => { return this.add(img); }
-                                );
+    if (img.id) {
+      return this.update(img.id, img);
+    }
+    return this.add(img);
   }
 
   remove(id) {
-    return this.$http.delete(`http://localhost:3000/imgs/${id}`);
+    return this.$http.delete(`http://10.10.54.24:3000/imgs/${id}`);
   }
 
   list() {
-    return this.$http.get('http://localhost:3000/imgs');
+    return this.$http.get('http://10.10.54.24:3000/imgs');
   }
 
   get(id) {
-    return this.$http.get(`http://localhost:3000/imgs/${id}`);
+    return this.$http.get(`http://10.10.54.24:3000/imgs/${id}`);
   }
 }

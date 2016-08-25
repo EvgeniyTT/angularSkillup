@@ -5,8 +5,6 @@ export default class NgImageDetailController {
     this.$location = $location;
     this.imgService = imgService;
     this.img = {};
-    this.prevImg = {};
-    this.nextImg = {};
   }
 
   $onInit() {
@@ -23,18 +21,6 @@ export default class NgImageDetailController {
       this.prevImg = images[currentImageIndex - 1];
       this.nextImg = images[currentImageIndex + 1];
     });
-  }
-
-  nextImage() {
-    if(!this.lastImg) {
-      this.$location.url(`/details/${this.nextImg.id}`);
-    }
-  }
-
-  prevImage() {
-    if(!this.firstImg) {
-      this.$location.url(`/details/${this.prevImg.id}`);
-    }
   }
 
 }

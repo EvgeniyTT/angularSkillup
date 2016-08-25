@@ -1,8 +1,8 @@
 <div class="details">
-  <button class="imgDetailArrow btn btn-primary" ng-click="imgDetailController.prevImage()" ng-disabled="imgDetailController.firstImg">
+  <a ng-href="{{imgDetailController.firstImg ? '' : '#/details/'+imgDetailController.prevImg.id}}"
+  class="imgDetailArrow btn btn-primary" ng-disabled="imgDetailController.firstImg" >
     <span class="glyphicon glyphicon-chevron-left"></span>
-  </button>
-
+  </a>
   <div class="content">
     <img ng-src="{{imgDetailController.img.src}}" class="img-rounded img-details" alt="{{imgDetailController.img.altText}}"/>
     <div class="imgDetailInfo">
@@ -11,10 +11,7 @@
       <p><b>Date added:</b> {{imgDetailController.img.dateAdded}}</p>
     </div>
   </div>
-
-  <button class="imgDetailArrow btn btn-primary" ng-click="imgDetailController.nextImage()" ng-disabled="imgDetailController.lastImg">
+  <a ng-href="{{imgDetailController.lastImg ? '' : '#/details/'+imgDetailController.nextImg.id}}" class="imgDetailArrow btn btn-primary" ng-disabled="imgDetailController.lastImg">
     <span class="glyphicon glyphicon-chevron-right"></span>
-  </button>
-
-
+  </a>
 </div>
