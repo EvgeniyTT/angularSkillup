@@ -1,10 +1,8 @@
 export default class NgImageCardController {
-  constructor(imgService, $scope) {
+  constructor(imgService) {
     'ngInject';
     this.imgService = imgService;
-    this.$scope = $scope;
     this.deleteConfirm = false;
-    this.$scope.$on('imageAdded', () => { this.$onInit(); });
   }
 
   $onInit() {
@@ -26,4 +24,5 @@ export default class NgImageCardController {
   hideConfirmMessage() {
     this.deleteConfirm = false;
   }
+
 }

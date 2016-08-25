@@ -6,11 +6,8 @@ export default () => ({
   template,
   controller,
   controllerAs: 'addImgController',
-  // require: '^^imgCard',
-  // link: function(scope, element, attrs, imgCardController) {
-  //   scope.$on('save', function() {
-  //     console.log(imgCardController);
-  //     imgCardController.$onInit();
-  //   })
-  // }
+  scope: {
+    refreshListOnSave: '&',
+  },
+  bindToController: true,
 });
