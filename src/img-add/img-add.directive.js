@@ -4,14 +4,14 @@ import controller from './img-add.controller';
 export default () => ({
   restrict: 'E',
   template,
-  require: {
-    imgCardController: '^^ngImgGallery'
-  },
+  // require: {
+  //   imgCardController: '^^ngImgGallery'
+  // },
   controller,
   controllerAs: 'addImgController',
-  // scope: {
-  //   refreshListOnSave: '&',
-  // },
+  scope: {
+    refreshListOnSave: '&',
+  },
   bindToController: true,
 
 
