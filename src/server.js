@@ -1,3 +1,5 @@
+'use strict';
+
 const mongodb = require('mongodb');
 const express = require('express');
 const assert = require('assert');
@@ -52,13 +54,9 @@ MongoClient.connect('mongodb://localhost:27017/imageGallery', function(err, db) 
         maxId++;
       })
     };
+  });
 });
-
-
-
-
-
 
 app.listen(3001, function () {
   console.log('Example app listening on port 3001!');
-});
+})
