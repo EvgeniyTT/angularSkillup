@@ -1,89 +1,142 @@
 'use strict';
 
-const mongodb = require('mongodb');
+require('dotenv').config();
+
+const mongoose = require('mongoose');
+// const mongodb = require('mongodb');
+// const MongoClient = mongodb.MongoClient;
+const ObjectId = require('mongodb').ObjectId;
 const express = require('express');
 const assert = require('assert');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 function errorHandler(err, req, res, next) {
-  res.status(500);
+  res.status(404);
   res.send('error', { error: err });
 }
 
-const host = '10.10.54.24';
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(errorHandler);
 
-const MongoClient = mongodb.MongoClient;
+// MONGOOSE
+mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/imageGallery`);
+const db = mongoose.connection;
+db.on('error', function (err) { console.log(err); } );
+db.once('open', function() {
+  const Schema = mongoose.Schema;
+  const imageSchema = new Schema({
+    src: String,
+    description: String,
+    dateAdded: Date
+  });
+  let Image = mongoose.model('Image', imageSchema, 'images');
 
-MongoClient.connect('mongodb://localhost:27017/imageGallery', function (err, db) {
-  assert.equal(err, null);
-  let maxId;
-  db.collection('images').find().sort({ id: -1 }).limit(1)
-    .toArray( function(err, imageWithMaxId) {
-      maxId = imageWithMaxId[0].id;
-    });
-
-  app.get('/allImages', function (req, res) {
-    db.collection('images').find().toArray(function(err, images) {
+  app.get('/images', function (req, res) {
+    Image.find(function (err, images) {
       assert.equal(err, null);
       res.send(images);
     });
   });
 
-  app.get('/:imageId', function (req, res, next) {
-    const imageId = parseInt(req.params.imageId, 10);
-    if (isNaN(imageId)) {
-      next(Error('can`t parse image id to number'));
-    } else {
-      db.collection('images').findOne({ id: imageId }, function(err, image) {
-        assert.equal(null, err);
-        res.send(image);
-      });
-    }
+  app.get('/images/:imageId', function (req, res, next) {
+    const imageId = req.params.imageId;
+    Image.findOne({ _id: ObjectId(imageId) }, function (err, image) {
+      assert.equal(err, null);
+      res.send(image);
+    });
   });
 
-  app.post('/', function (req, res, next) {
-    const image = req.body;
+  app.post('/images', function (req, res, next) {
+    const image = new Image(req.body);
     if (image.src == 'undefined' || image.description == 'undefined') {
-      next(Error('Required fields are not populated'));
+      return next(new Error('Required fields are not populated'));
     } else {
-      image.id = maxId++;
-      db.collection('images').insert(image, function(err) {
-        assert.equal(err, null);
+      image.save(function (err) {
+        // if (err) return handleError(err);
         res.send('Image was successfully inserted');
       });
     }
   });
 
-  app.put('/', function(req, res, next) {
+  app.put('/images:imageId', function(req, res, next) {
+    const imageId = req.params.imageId;
     const image = req.body;
     if (image.src == 'undefined' || image.description == 'undefined') {
-      next(Error('Required fields are not populated'));
+      return next(new Error('Required fields are not populated'));
     } else {
-      db.collection('images').update({ id: image.id }, image, function(err) {
+      Images.findOneAndUpdate({ _id: ObjectId(imageId) }, image, function(err) {
         assert.equal(err, null);
         res.send('Image was successfully updated');
       });
     }
   });
 
-  app.delete('/:imageId', function (req, res, next) {
-    const imageId = parseInt(req.params.imageId, 10);
-    if (isNaN(imageId)) {
-      next(Error('can`t parse image id to number'));
-    } else {
-      db.collection('images').remove({ id: imageId }, function(err) {
-        assert.equal(err, null);
-        res.send('image was deleted successfully');
-      });
-    }
+  app.delete('/images/:imageId', function (req, res, next) {
+    const imageId = req.params.imageId;
+    Image.remove({ _id: ObjectId(imageId) }, function (err, image) {
+      assert.equal(err, null);
+      if (err) { return next(err); }
+      res.send(image);
+    });
   });
 });
 
-app.listen(3001, host,  function () {
+//  PURE MONGO
+// MongoClient.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/imageGallery`, function (err, db) {
+//   assert.equal(err, null);
+//
+//   app.get('/images', function (req, res) {
+//     db.collection('images').find().toArray(function(err, images) {
+//       assert.equal(err, null);
+//       res.send(images);
+//     });
+//   });
+//
+//   app.get('/images/:imageId', function (req, res, next) {
+//     const imageId = req.params.imageId;
+//     db.collection('images').findOne({ _id: ObjectId(imageId) }, function(err, image) {
+//       assert.equal(null, err);
+//       res.send(image);
+//     });
+//   });
+//
+//   app.post('/images', function (req, res, next) {
+//     const image = req.body;
+//     if (image.src == 'undefined' || image.description == 'undefined') {
+//       next(Error('Required fields are not populated'));
+//     } else {
+//       db.collection('images').insert(image, function(err) {
+//         assert.equal(err, null);
+//         res.send('Image was successfully inserted');
+//       });
+//     }
+//   });
+//
+//   app.put('/images:imageId', function(req, res, next) {
+//     const imageId = req.params.imageId;
+//     const image = req.body;
+//     if (image.src == 'undefined' || image.description == 'undefined') {
+//       next(Error('Required fields are not populated'));
+//     } else {
+//       db.collection('images').update({ _id: ObjectId(imageId) }, image, function(err) {
+//         assert.equal(err, null);
+//         res.send('Image was successfully updated');
+//       });
+//     }
+//   });
+//
+//   app.delete('/images/:imageId', function (req, res, next) {
+//     const imageId = req.params.imageId;
+//     db.collection('images').remove({ _id: ObjectId(imageId) }, function(err) {
+//       assert.equal(err, null);
+//       res.send('image was deleted successfully');
+//     });
+//   });
+// });
+
+app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST,  function () {
   console.log('app listening on port 3001!');
 });

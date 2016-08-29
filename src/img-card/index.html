@@ -1,7 +1,7 @@
 <h1>All Images</h1></br>
 <div class="gallery-list">
   <div class="container-fluid in-list" ng-repeat="img in imgCardController.imgs">
-    <a href="#/details/{{img.id}}">
+    <a href="#/details/{{img._id}}">
       <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}" ng-click="imgCardController.showDetails(this)"/>
     </a>
     <p>{{img.description}}</p>

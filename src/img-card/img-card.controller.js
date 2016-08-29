@@ -10,7 +10,7 @@ export default class NgImageCardController {
   }
 
   deleteImg() {
-    this.imgService.remove(this.currentImg.img.id)
+    this.imgService.remove(this.currentImg.img._id)
                     .then(() => { return this.imgService.list() })
                     .then((db) => { this.imgs = db.data; });
     this.hideConfirmMessage();

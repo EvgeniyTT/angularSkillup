@@ -3,6 +3,7 @@ export default class imgService {
     'ngInject';
     this.$http = $http;
     // this.url = 'http://localhost:3001';
+    // this.url = `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`;
     this.url = 'http://10.10.54.24:3001';
   }
 
@@ -36,30 +37,30 @@ export default class imgService {
 
   // NODE
   add(img) {
-    return this.$http.post(`${this.url}/`, img);
+    return this.$http.post(`${this.url}/images`, img);
   }
 
-  update(id, imgData) {
-    return this.$http.put(`${this.url}/${id}`, imgData);
+  update(_id, imgData) {
+    return this.$http.put(`${this.url}/images/${_id}`, imgData);
   }
 
   save(img) {
-    if (img.id) {
-      return this.update(img.id, img);
+    if (img._id) {
+      return this.update(img._id, img);
     }
     return this.add(img);
   }
 
-  remove(id) {
-    return this.$http.delete(`${this.url}/${id}`);
+  remove(_id) {
+    return this.$http.delete(`${this.url}/images/${_id}`);
   }
 
   list() {
-    return this.$http.get(`${this.url}/allImages`);
+    return this.$http.get(`${this.url}/images`);
   }
 
-  get(id) {
-    return this.$http.get(`${this.url}/${id}`);
+  get(_id) {
+    return this.$http.get(`${this.url}/images/${_id}`);
   }
 
 }
