@@ -52,7 +52,7 @@ MongoClient.connect('mongodb://localhost:27017/imageGallery', function (err, db)
       next(Error('Required fields are not populated'));
     } else {
       image.id = maxId++;
-      db.collection('images').insert(image, function(err, result) {
+      db.collection('images').insert(image, function(err) {
         assert.equal(err, null);
         res.send('Image was successfully inserted');
       });
@@ -64,10 +64,9 @@ MongoClient.connect('mongodb://localhost:27017/imageGallery', function (err, db)
     if (image.src == 'undefined' || image.description == 'undefined') {
       next(Error('Required fields are not populated'));
     } else {
-      db.collection('images').update({ id: image.id }, image, function(err, result) {
+      db.collection('images').update({ id: image.id }, image, function(err) {
         assert.equal(err, null);
-        res.send('Image was successfully inserted');
-        maxId++;
+        res.send('Image was successfully updated');
       });
     }
   });
