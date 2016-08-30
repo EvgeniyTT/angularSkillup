@@ -1,8 +1,6 @@
-// "strict": "error"
 'use strict';
 
 require('dotenv').config();
-
 const mongoose = require('mongoose');
 // const mongodb = require('mongodb');
 // const MongoClient = mongodb.MongoClient;
