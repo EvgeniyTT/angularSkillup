@@ -1,3 +1,4 @@
+// "strict": "error"
 'use strict';
 
 require('dotenv').config();
@@ -11,76 +12,79 @@ const assert = require('assert');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-function errorHandler(err, req, res, next) {
-  res.status(404);
-  res.send('error', { error: err });
-}
-
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(errorHandler);
 
 // MONGOOSE
 mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/imageGallery`);
 const db = mongoose.connection;
-db.on('error', function (err) { console.log(err); } );
-db.once('open', function() {
+db.on('error', (err) => { console.log(err); });
+db.once('open', () => {
   const Schema = mongoose.Schema;
   const imageSchema = new Schema({
     src: String,
     description: String,
     dateAdded: Date
   });
-  let Image = mongoose.model('Image', imageSchema, 'images');
+  const Image = mongoose.model('Image', imageSchema, 'images');
 
-  app.get('/images', function (req, res) {
-    Image.find(function (err, images) {
-      assert.equal(err, null);
+  // routing
+  app.get('/images', (req, res, next) => {
+    Image.find((err, images) => {
+      if (err) { return next(err); }
       res.send(images);
     });
   });
 
-  app.get('/images/:imageId', function (req, res, next) {
+  app.get('/images/:imageId', (req, res, next) => {
     const imageId = req.params.imageId;
-    Image.findOne({ _id: ObjectId(imageId) }, function (err, image) {
-      assert.equal(err, null);
+    Image.findOne({ _id: new ObjectId(imageId) }, (err, image) => {
+      if (err) { return next(err); }
       res.send(image);
     });
   });
 
-  app.post('/images', function (req, res, next) {
+  app.post('/images', (req, res, next) => {
     const image = new Image(req.body);
-    if (image.src == 'undefined' || image.description == 'undefined') {
-      return next(new Error('Required fields are not populated'));
-    } else {
-      image.save(function (err) {
-        // if (err) return handleError(err);
-        res.send('Image was successfully inserted');
-      });
+    if (image.src === '' || image.description === '') {
+      const err = new Error('Required fields are not populated');
+      err.status = 400;
+      return next(err);
     }
+    image.save((err) => {
+      if (err) { return next(err); }
+      res.send('Image was successfully inserted');
+    });
   });
 
-  app.put('/images:imageId', function(req, res, next) {
+  app.put('/images/:imageId', (req, res, next) => {
     const imageId = req.params.imageId;
     const image = req.body;
-    if (image.src == 'undefined' || image.description == 'undefined') {
-      return next(new Error('Required fields are not populated'));
-    } else {
-      Images.findOneAndUpdate({ _id: ObjectId(imageId) }, image, function(err) {
-        assert.equal(err, null);
-        res.send('Image was successfully updated');
-      });
+    if (image.src === '' || image.description === '') {
+      const err = new Error('Required fields are not populated');
+      err.status = 400;
+      return next(err);
     }
+    Image.findOneAndUpdate({ _id: new ObjectId(imageId) }, image, (err) => {
+      if (err) { return next(err); }
+      res.send('Image was successfully updated');
+    });
   });
 
-  app.delete('/images/:imageId', function (req, res, next) {
+  app.delete('/images/:imageId', (req, res, next) => {
     const imageId = req.params.imageId;
-    Image.remove({ _id: ObjectId(imageId) }, function (err, image) {
+    Image.remove({ _id: new ObjectId(imageId) }, (err, image) => {
       assert.equal(err, null);
       if (err) { return next(err); }
       res.send(image);
     });
+  });
+
+  // error handling
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.send(err.toString());
   });
 });
 
@@ -137,6 +141,6 @@ db.once('open', function() {
 //   });
 // });
 
-app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST,  function () {
+app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, () => {
   console.log('app listening on port 3001!');
 });
