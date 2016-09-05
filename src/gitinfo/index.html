@@ -1,20 +1,20 @@
 <div class="ng-git">
   <p class="header"><b>GIT INFO FE</b></p>
-  <img ng-src="{{gitController.git.avatar_url}}" class="gitAvatar"/>
-  <p><b>User:</b> {{gitController.git.username}}</p>
-  <p><b>Repository:</b> {{gitController.git.repository}}</p>
-  <p><b>Created:</b> {{gitController.git.created}}</p>
-  <p><b>Updated:</b> {{gitController.git.updated}}</p>
-  <p><b>Size:</b> {{gitController.git.size}}</p>
-  <p><b>Clone URL:</b> {{gitController.git.clone_url}}</p>
+  <img ng-src="{{gitController.gitFE.owner.avatar_url}}" class="gitAvatar"/>
+  <p><b>User:</b> {{gitController.gitFE.owner.login}}</p>
+  <p><b>Repository:</b> {{gitController.gitFE.name}}</p>
+  <p><b>Created:</b> {{gitController.gitFE.created_at}}</p>
+  <p><b>Updated:</b> {{gitController.gitFE.updated_at}}</p>
+  <p><b>Size:</b> {{gitController.gitFE.size}}</p>
+  <p><b>Clone URL:</b> {{gitController.gitFE.clone_url}}</p>
 </div>
 <div class="ng-gitBE">
   <p class="header"><b>GIT INFO BE</b></p>
-  <img ng-src="{{gitController.gitBE.avatar_url}}" class="gitAvatar"/>
-  <p><b>User:</b> {{gitController.gitBE.username}}</p>
-  <p><b>Repository:</b> {{gitController.gitBE.repository}}</p>
-  <p><b>Created:</b> {{gitController.gitBE.created}}</p>
-  <p><b>Updated:</b> {{gitController.gitBE.updated}}</p>
+  <img ng-src="{{gitController.gitBE.owner.avatar_url}}" class="gitAvatar"/>
+  <p><b>User:</b> {{gitController.gitBE.owner.login}}</p>
+  <p><b>Repository:</b> {{gitController.gitBE.name}}</p>
+  <p><b>Created:</b> {{gitController.gitBE.created_at}}</p>
+  <p><b>Updated:</b> {{gitController.gitBE.updated_at}}</p>
   <p><b>Size:</b> {{gitController.gitBE.size}}</p>
   <p><b>Clone URL:</b> {{gitController.gitBE.clone_url}}</p>
 </div>

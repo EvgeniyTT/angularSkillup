@@ -6,12 +6,7 @@ export default class imgService {
   }
 
   get(userName, repository) {
-    console.log(`${this.url}/git/${userName}/${repository}`);
     return this.$http.get(`${this.url}/git/${userName}/${repository}`);
   }
-
-  // get(userName, repository) {
-  //   return this.$http.get(`${this.url}/git`);
-  // }
 
 }
