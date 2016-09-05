@@ -6,14 +6,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, 'src'), // source directory
-  entry: './main.js',
+  entry: ['babel-polyfill', './main.js'],
   output: {
     path: './build', // output directory
     filename: 'build-[hash:4].js'
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'ng-annotate!babel?presets[]=es2015', exclude: /node_modules/ },
+      { test: /\.js$/, loader: 'ng-annotate!babel?presets[]=es2015', exclude: '/node_modules/**' },
 			{ test: /\.html$/, loader: 'html?conservativeCollapse' },
 			{ test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
 			{ test: /\.(png|jpe?g|.gif)$/, loader: 'file?name=[path][name].[ext]' },
