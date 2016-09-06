@@ -7,7 +7,7 @@ export default class NgGitInfoController {
 
   $onInit() {
     const self = this;
-    // FRONT END
+    // without service and api
     (async function foo() {
       try {
         const packageInfo = await(fetch('/package.json'));
@@ -22,7 +22,7 @@ export default class NgGitInfoController {
         console.log(e);
       }
     })();
-    // BACK END
+    // with service and api
     (async () => {
       try {
         const packageInfo = await fetch('/package.json');
