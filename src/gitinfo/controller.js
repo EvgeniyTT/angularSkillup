@@ -1,7 +1,6 @@
 export default class NgGitInfoController {
-  constructor(gitService, $scope, $http) {
+  constructor(gitService, $http) {
     'ngInject';
-    this.$scope = $scope;
     this.$http = $http;
     this.gitService = gitService;
   }
