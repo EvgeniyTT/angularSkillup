@@ -8,39 +8,33 @@ export default class NgGitInfoController {
   $onInit() {
     const self = this;
     // FRONT END
-    function* getGitInfo() {
+    (async function foo() {
       try {
-        const packageInfo = yield fetch('/package.json');
-        const gitInfo = yield packageInfo.json();
-        const gitUserName = gitInfo.repository.url.split('/')[3];
-        const gitRepository = gitInfo.repository.url.split('/')[4].split('.')[0];
-        const githubFetch = yield fetch(`https://api.github.com/repos/${gitUserName}/${gitRepository}`);
-        const githubFetchInfo = yield githubFetch.json();
+        const packageInfo = await(fetch('/package.json'));
+        const packageInfoJson = await packageInfo.json();
+        const gitUserName = packageInfoJson.repository.url.split('/')[3];
+        const gitRepository = packageInfoJson.repository.url.split('/')[4].split('.')[0];
+        const githubFetch = await fetch(`https://api.github.com/repos/${gitUserName}/${gitRepository}`);
+        const githubFetchInfo = await(githubFetch.json());
         self.gitFE = githubFetchInfo;
         self.$scope.$digest();
       } catch (e) {
         console.log(e);
       }
-    }
-    function executeGenerator(generator, yieldValue) {
-      const next = generator.next(yieldValue);
-      if (!next.done) {
-        next.value.then(
-        result => executeGenerator(generator, result),
-        err => generator.throw(err)
-        );
-      }
-    }
-    executeGenerator(getGitInfo());
+    })();
     // BACK END
-    fetch('/package.json').then((result) => {
-      result.json().then((filedata) => {
-        const gitUserName = filedata.repository.url.split('/')[3];
-        const gitRepository = filedata.repository.url.split('/')[4].split('.')[0];
-        this.gitService.get(gitUserName, gitRepository).then((gitData) => {
-          self.gitBE = gitData.data;
-        });
-      });
-    });
+    (async () => {
+      try {
+        const packageInfo = await fetch('/package.json');
+        const packageInfoJson = await packageInfo.json();
+        const gitUserName = packageInfoJson.repository.url.split('/')[3];
+        const gitRepository = packageInfoJson.repository.url.split('/')[4].split('.')[0];
+        const gitServiceResponse = await this.gitService.get(gitUserName, gitRepository);
+        self.gitBE = gitServiceResponse.data;
+        self.$scope.$digest();
+      } catch (e) {
+        console.log(e);
+      }
+    })();
   }
 }

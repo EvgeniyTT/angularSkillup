@@ -13,7 +13,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'ng-annotate!babel?presets[]=es2015', exclude: '/node_modules/**' },
+      { test: /\.js$/, loader: 'ng-annotate!babel?presets[]=es2015&plugins=transform-async-to-generator', exclude: '/node_modules/**' },
 			{ test: /\.html$/, loader: 'html?conservativeCollapse' },
 			{ test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
 			{ test: /\.(png|jpe?g|.gif)$/, loader: 'file?name=[path][name].[ext]' },
