@@ -1,40 +1,29 @@
 export default class NgGitInfoController {
-  constructor(gitService, $scope) {
+  constructor(gitService, $scope, $http) {
     'ngInject';
     this.$scope = $scope;
+    this.$http = $http;
     this.gitService = gitService;
   }
 
-  $onInit() {
-    const self = this;
-    // without service and api
-    (async function foo() {
+  async $onInit() {
+      // without service and api
       try {
-        const packageInfo = await(fetch('/package.json'));
-        const packageInfoJson = await packageInfo.json();
+        const packageInfoJson = (await this.$http.get('/package.json')).data;
         const gitUserName = packageInfoJson.repository.url.split('/')[3];
         const gitRepository = packageInfoJson.repository.url.split('/')[4].split('.')[0];
-        const githubFetch = await fetch(`https://api.github.com/repos/${gitUserName}/${gitRepository}`);
-        const githubFetchInfo = await(githubFetch.json());
-        self.gitFE = githubFetchInfo;
-        self.$scope.$digest();
+        this.gitReposInfo1 = (await this.$http.get(`https://api.github.com/repos/${gitUserName}/${gitRepository}`)).data;
       } catch (e) {
         console.log(e);
       }
-    })();
-    // with service and api
-    (async () => {
+      // with service and api
       try {
-        const packageInfo = await fetch('/package.json');
-        const packageInfoJson = await packageInfo.json();
+        const packageInfoJson = (await this.$http.get('/package.json')).data;
         const gitUserName = packageInfoJson.repository.url.split('/')[3];
         const gitRepository = packageInfoJson.repository.url.split('/')[4].split('.')[0];
-        const gitServiceResponse = await this.gitService.get(gitUserName, gitRepository);
-        self.gitBE = gitServiceResponse.data;
-        self.$scope.$digest();
+        this.gitReposInfo2 = (await this.gitService.get(gitUserName, gitRepository)).data;
       } catch (e) {
         console.log(e);
       }
-    })();
   }
 }

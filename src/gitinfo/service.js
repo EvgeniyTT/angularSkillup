@@ -8,5 +8,4 @@ export default class imgService {
   get(userName, repository) {
     return this.$http.get(`${this.url}/git/${userName}/${repository}`);
   }
-
 }
