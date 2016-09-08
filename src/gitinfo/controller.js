@@ -1,8 +1,9 @@
 export default class NgGitInfoController {
-  constructor(gitService, $http) {
+  constructor(gitService, $http, $scope) {
     'ngInject';
     this.$http = $http;
     this.gitService = gitService;
+    this.$scope = $scope;
   }
 
   async $onInit() {
@@ -21,6 +22,7 @@ export default class NgGitInfoController {
         const gitUserName = packageInfoJson.repository.url.split('/')[3];
         const gitRepository = packageInfoJson.repository.url.split('/')[4].split('.')[0];
         this.gitReposInfo2 = (await this.gitService.get(gitUserName, gitRepository)).data;
+        this.$scope.$digest();
       } catch (e) {
         console.log(e);
       }
