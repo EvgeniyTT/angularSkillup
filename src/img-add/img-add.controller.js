@@ -14,5 +14,4 @@ export default class NgImageAddController {
     this.src = '';
     this.description = '';
   }
-
 }

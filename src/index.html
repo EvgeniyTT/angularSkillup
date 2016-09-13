@@ -7,7 +7,14 @@
   <body ng-app="app" ng-strict-di>
     <ng-navbar></ng-navbar>
     <div class="container">
-      <div ng-view></div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div ng-view></div>
+        </div>
+        <div class="col-xs-4">
+          <ng-git></ng-git>
+        </div>
+      </div>
     </div>
   </body>
 </html>

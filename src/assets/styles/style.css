@@ -6,7 +6,8 @@ body {
   width: 250px;
   height: 200px;
   display: inline-block;
-  margin: 20px;
+  margin: 0;
+  padding: 0;
   margin-bottom: 40px;
 }
 
@@ -54,9 +55,6 @@ img.img-details {
   width: 100%;
 }
 
-.imgDetailArrow {
-}
-
 .deleteConfirm {
     position: fixed;
     top: 50%;
@@ -93,4 +91,29 @@ img.img-details {
   border-radius: 5px;
   margin-top: 15px;
   position: relative;
+}
+
+.ng-git, .ng-gitBE {
+  margin-top: 90px;
+  padding: 20px;
+  height: 400px;
+  width: 300px;
+  border: 2px solid;
+  border-radius: 10px;
+  background-color: #c9cfe2;
+  word-wrap: break-word;
+}
+
+.ng-git .header, .ng-gitBE .header {
+  text-align: center;
+}
+
+.ng-git .gitAvatar, .ng-gitBE .gitAvatar {
+  text-align: center;
+  width: 100px;
+  border-radius: 20px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

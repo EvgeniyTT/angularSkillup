@@ -8,14 +8,14 @@ export default class NgImageDetailController {
   }
 
   $onInit() {
-    this.imgService.get(this.$routeParams.id).then((db) => { this.img = db.data; });
+    this.imgService.get(this.$routeParams._id).then((db) => { this.img = db.data; });
     this.setPagination();
   }
 
   setPagination() {
     this.imgService.list().then((db) => {
       const images = db.data;
-      const currentImageIndex = images.findIndex(img => { return img.id == this.$routeParams.id; });
+      const currentImageIndex = images.findIndex(img => { return img._id == this.$routeParams._id; });
       this.firstImg = currentImageIndex === 0;
       this.lastImg = currentImageIndex === images.length - 1;
       this.prevImg = images[currentImageIndex - 1];

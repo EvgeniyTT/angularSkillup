@@ -1,17 +1,17 @@
 <div class="details">
-  <a ng-href="{{imgDetailController.firstImg ? '' : '#/details/'+imgDetailController.prevImg.id}}"
+  <a ng-href="{{imgDetailController.firstImg ? '' : '#/details/'+imgDetailController.prevImg._id}}"
   class="imgDetailArrow btn btn-primary" ng-disabled="imgDetailController.firstImg" >
     <span class="glyphicon glyphicon-chevron-left"></span>
   </a>
   <div class="content">
     <img ng-src="{{imgDetailController.img.src}}" class="img-rounded img-details" alt="{{imgDetailController.img.altText}}"/>
     <div class="imgDetailInfo">
-      <p><b>Description:</b> {{imgDetailController.img.label}}</p>
+      <p><b>Description:</b> {{imgDetailController.img.description}}</p>
       <p><b>Source:</b> {{imgDetailController.img.src}}</p>
       <p><b>Date added:</b> {{imgDetailController.img.dateAdded}}</p>
     </div>
   </div>
-  <a ng-href="{{imgDetailController.lastImg ? '' : '#/details/'+imgDetailController.nextImg.id}}" class="imgDetailArrow btn btn-primary" ng-disabled="imgDetailController.lastImg">
+  <a ng-href="{{imgDetailController.lastImg ? '' : '#/details/'+imgDetailController.nextImg._id}}" class="imgDetailArrow btn btn-primary" ng-disabled="imgDetailController.lastImg">
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
 </div>

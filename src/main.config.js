@@ -4,7 +4,7 @@ export default ($routeProvider) => {
   .when('/images', {
     template: '<ng-img-gallery></ng-img-gallery>'
   })
-  .when('/details/:id?', {
+  .when('/details/:_id?', {
     template: '<ng-img-details></ng-img-details>'
   })
   .when('/about', {
