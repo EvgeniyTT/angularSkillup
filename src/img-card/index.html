@@ -1,15 +1,20 @@
 <h1>All Images</h1></br>
 <div class="gallery-list">
   <div class="container-fluid in-list" ng-repeat="img in imgCardController.imgsToShow"
-    ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-    <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}"/>
-    <p class="imageDescription">{{img.description}}</p>
-    <a href="#/details/{{img._id}}" class="imageAction left" ng-class="{transition: hover && !showConfirm}">View</a>
-    <a class="imageAction right" ng-class="{transition: hover && !showConfirm}" ng-click="showConfirm = true; imgCardController.showConfirmMessage(this)">Delete</a>
-    <a class="imageAction left" ng-class="{transition: showConfirm}" ng-click="imgCardController.deleteImg()">Yes</a>
-    <a class="imageAction right" ng-class="{transition: showConfirm}" ng-click="showConfirm = false">No</a>
+  ng-mouseleave="rotateImage = false">
+      <div class="flipper" ng-class="{rotate: rotateImage}">
+        <div class="front">
+          <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}"/>
+          <p class="imageDescription">{{img.description}}</p>
+          <a href="#/details/{{img._id}}" class="image-action left">View</a>
+          <a class="image-action right" ng-click="rotateImage = true; imgCardController.showConfirmMessage(this)">Delete</a>
+        </div>
+        <div class="back">
+          <a class="delete-confirm left" ng-click="imgCardController.deleteImg(this)">Yes</a>
+          <a class="delete-confirm right" ng-click="rotateImage = false">No</a>
+        </div>
+      </div>
   </div>
   <a class="showMore" ng-click="imgCardController.showMore()">Show more</a>
   <hr/>
-  <ng-img-add-form refresh-list-on-save="imgCardController.$onInit()"></ng-img-add-form>
 </div>

@@ -4,6 +4,9 @@ export default ($routeProvider) => {
   .when('/images', {
     template: '<ng-img-gallery></ng-img-gallery>'
   })
+  .when('/add', {
+    template: '<ng-img-add-form refresh-list-on-save="imgCardController.$onInit()"></ng-img-add-form>'
+  })
   .when('/details/:_id?', {
     template: '<ng-img-details></ng-img-details>'
   })

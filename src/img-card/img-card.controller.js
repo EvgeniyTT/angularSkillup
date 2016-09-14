@@ -3,36 +3,27 @@ export default class NgImageCardController {
     'ngInject';
     this.imgService = imgService;
     this.deleteConfirm = false;
-    this.amountToShow = 10;
-    this.showRequest = 2;
+    this.imgsToShow = [];
+    this.amountToRequest = 10;
+    this.skip = 0;
   }
 
   $onInit() {
-    this.imgService.list().then((db) => {
-      this.imgs = db.data;
-      this.imgsToShow = this.imgs.slice(0, this.amountToShow);
-    });
+    this.showMore();
   }
 
-  deleteImg() {
-    this.imgService.remove(this.currentImg.img._id)
-                    .then(() => { return this.imgService.list() })
-                    .then((db) => { this.imgs = db.data; });
-    this.hideConfirmMessage();
-  }
-
-  showConfirmMessage(img) {
-    this.currentImg = img;
-    this.deleteConfirm = true;
-  }
-
-  hideConfirmMessage() {
-    this.deleteConfirm = false;
+  deleteImg(img) {
+    this.imgService.remove(img.img._id)
+                    .then((result) => { if (result.data.ok == 1) {
+                        this.imgsToShow = this.imgsToShow.filter((el) => { return el._id != img.img._id; });
+                    } });
   }
 
   showMore() {
-    this.imgsToShow = this.imgs.slice(0, this.amountToShow * this.showRequest);
-    this.showRequest++;
+    this.imgService.list(this.skip, this.amountToRequest).then((db) => {
+      this.imgsToShow = this.imgsToShow.concat(db.data);
+      this.skip = this.skip + this.amountToRequest;
+    });
   }
 
 }

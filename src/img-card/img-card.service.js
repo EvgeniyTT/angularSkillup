@@ -55,8 +55,8 @@ export default class imgService {
     return this.$http.delete(`${this.url}/images/${_id}`);
   }
 
-  list() {
-    return this.$http.get(`${this.url}/images`);
+  list(skip, limit) {
+    return this.$http.get(`${this.url}/images/${skip}/${limit}`);
   }
 
   get(_id) {
