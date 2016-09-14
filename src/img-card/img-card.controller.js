@@ -3,10 +3,15 @@ export default class NgImageCardController {
     'ngInject';
     this.imgService = imgService;
     this.deleteConfirm = false;
+    this.amountToShow = 10;
+    this.showRequest = 2;
   }
 
   $onInit() {
-    this.imgService.list().then((db) => { this.imgs = db.data; });
+    this.imgService.list().then((db) => {
+      this.imgs = db.data;
+      this.imgsToShow = this.imgs.slice(0, this.amountToShow);
+    });
   }
 
   deleteImg() {
@@ -23,6 +28,11 @@ export default class NgImageCardController {
 
   hideConfirmMessage() {
     this.deleteConfirm = false;
+  }
+
+  showMore() {
+    this.imgsToShow = this.imgs.slice(0, this.amountToShow * this.showRequest);
+    this.showRequest++;
   }
 
 }

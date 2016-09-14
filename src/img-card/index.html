@@ -1,22 +1,15 @@
 <h1>All Images</h1></br>
 <div class="gallery-list">
-  <div class="container-fluid in-list" ng-repeat="img in imgCardController.imgs">
-    <a href="#/details/{{img._id}}">
-      <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}" ng-click="imgCardController.showDetails(this)"/>
-    </a>
-    <p>{{img.description}}</p>
-    <button type="button" class="btn btn-primary" ng-click="imgCardController.showConfirmMessage(this)">Delete Image</button>
+  <div class="container-fluid in-list" ng-repeat="img in imgCardController.imgsToShow"
+    ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+    <img ng-src="{{img.src}}" class="img-rounded" alt="{{img.altText}}"/>
+    <p class="imageDescription">{{img.description}}</p>
+    <a href="#/details/{{img._id}}" class="imageAction left" ng-class="{transition: hover && !showConfirm}">View</a>
+    <a class="imageAction right" ng-class="{transition: hover && !showConfirm}" ng-click="showConfirm = true; imgCardController.showConfirmMessage(this)">Delete</a>
+    <a class="imageAction left" ng-class="{transition: showConfirm}" ng-click="imgCardController.deleteImg()">Yes</a>
+    <a class="imageAction right" ng-class="{transition: showConfirm}" ng-click="showConfirm = false">No</a>
   </div>
-  <div class="deleteConfirm" ng-show="imgCardController.deleteConfirm">
-    <div class="container">
-      <button class="removeBtn" ng-click="imgCardController.hideConfirmMessage()"><span glyphicon glyphicon-remove></span>X</button>
-      <br/>
-      <span>Are you sure want to delete this image?</span>
-      <br/>
-      <button class="btn btn-danger" ng-click="imgCardController.deleteImg()">Yes</button>
-      <button class="btn btn-success" ng-click="imgCardController.hideConfirmMessage()">No</button>
-    </div>
-  </div>
+  <a class="showMore" ng-click="imgCardController.showMore()">Show more</a>
   <hr/>
   <ng-img-add-form refresh-list-on-save="imgCardController.$onInit()"></ng-img-add-form>
 </div>

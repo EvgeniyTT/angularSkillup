@@ -3,18 +3,73 @@ body {
 }
 
 .in-list {
-  width: 250px;
-  height: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 200px;
+  height: 150px;
   display: inline-block;
-  margin: 0;
+  margin: 20px;
   padding: 0;
-  margin-bottom: 40px;
 }
 
 .in-list img {
+
+  height: 100%;
+  width: 100%;
+}
+
+.imageDescription {
+  position: relative;
+  padding-left: 10px;
+  bottom: 20px;
+  color: white;
+  background-color: rgba(0, 120, 201, 0.7);
+  border-radius: 5px;
+}
+
+.imageAction {
+  width: 70px;
+  height: 20px;
+  background-color: rgba(0, 120, 201, 0.7);
+  position: absolute;
+  text-align: center;
+  color: white;
   cursor: pointer;
-  height: 80%;
-  width: 80%;
+  text-decoration: none;
+}
+
+.imageAction:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.imageAction.left {
+  left: -80px;
+  top: 40%;
+}
+
+.imageAction.right {
+  left: 210px;
+  top: 40%;
+}
+
+.imageAction.transition {
+  transition: left 1s cubic-bezier(0,.62,.61,1.43);
+}
+
+.imageAction.left.transition {
+  left: 20px;
+}
+
+.imageAction.right.transition {
+  left: 110px;
+}
+
+a.showMore, a.showMore:hover {
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  text-align: center;
 }
 
 .details {
