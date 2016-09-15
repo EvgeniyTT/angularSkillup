@@ -10,6 +10,14 @@ export default class NgImageCardController {
 
   $onInit() {
     this.showMore();
+    document.addEventListener("scroll", (event) => {
+      const lastImage = document.querySelector(".in-list .flipper:last-child");
+      const lastImageOffset = lastImage.offsetTop + lastImage.clientHeight;
+      const pageOffset = window.pageYOffset + window.innerHeight;
+      if(pageOffset > lastImageOffset && this.loaded != this.skip) {
+        this.showMore();
+      }
+    });
   }
 
   deleteImg(img) {
@@ -20,6 +28,7 @@ export default class NgImageCardController {
   }
 
   showMore() {
+    this.loaded = this.skip;
     this.imgService.list(this.skip, this.amountToRequest).then((db) => {
       this.imgsToShow = this.imgsToShow.concat(db.data);
       this.skip = this.skip + this.amountToRequest;
