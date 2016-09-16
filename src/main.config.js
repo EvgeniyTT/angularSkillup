@@ -2,7 +2,7 @@ export default ($routeProvider) => {
   'ngInject';
   $routeProvider
   .when('/images', {
-    template: '<ng-img-gallery></ng-img-gallery>'
+    template: '<image-gallery></image-gallery>'
   })
   .when('/add', {
     template: '<ng-img-add-form refresh-list-on-save="imgCardController.$onInit()"></ng-img-add-form>'

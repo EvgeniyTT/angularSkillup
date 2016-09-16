@@ -1,19 +1,19 @@
 export default class NgImageDetailController {
-  constructor($routeParams, $location, imgService) {
+  constructor($routeParams, $location, imageService) {
     'ngInject';
     this.$routeParams = $routeParams;
     this.$location = $location;
-    this.imgService = imgService;
+    this.imageService = imageService;
     this.img = {};
   }
 
   $onInit() {
-    this.imgService.get(this.$routeParams._id).then((db) => { this.img = db.data; });
+    this.imageService.get(this.$routeParams._id).then((db) => { this.img = db.data; });
     this.setPagination();
   }
 
   setPagination() {
-    this.imgService.list().then((db) => {
+    this.imageService.list().then((db) => {
       const images = db.data;
       const currentImageIndex = images.findIndex(img => { return img._id == this.$routeParams._id; });
       this.firstImg = currentImageIndex === 0;

@@ -1,38 +1,51 @@
-export default class NgImageCardController {
-  constructor(imgService) {
+export default class ImageCardController {
+  constructor(imageService, $window, $document, $element) {
     'ngInject';
-    this.imgService = imgService;
+    this.imageService = imageService;
+    this.$window = $window;
+    this.$document = $document[0];
+    this.$element = $element[0];
     this.deleteConfirm = false;
-    this.imgsToShow = [];
+    this.images = [];
     this.amountToRequest = 10;
     this.skip = 0;
+    this.scrollListener = () => {
+      const lastImage = this.$element.querySelector('.gallery-list .in-list:last-child');
+      const lastImageOffset = lastImage.offsetTop + lastImage.clientHeight;
+      const pageOffset = this.$window.pageYOffset + this.$window.innerHeight;
+      if (pageOffset > lastImageOffset && this.loaded !== this.skip && !this.isInLoading) {
+        this.showMore();
+      }
+    };
   }
 
   $onInit() {
     this.showMore();
-    document.addEventListener("scroll", (event) => {
-      const lastImage = document.querySelector(".in-list .flipper:last-child");
-      const lastImageOffset = lastImage.offsetTop + lastImage.clientHeight;
-      const pageOffset = window.pageYOffset + window.innerHeight;
-      if(pageOffset > lastImageOffset && this.loaded != this.skip) {
-        this.showMore();
-      }
-    });
+    this.$document.addEventListener('scroll', this.scrollListener);
   }
 
-  deleteImg(img) {
-    this.imgService.remove(img.img._id)
-                    .then((result) => { if (result.data.ok == 1) {
-                        this.imgsToShow = this.imgsToShow.filter((el) => { return el._id != img.img._id; });
-                    } });
+  deleteImage(image) {
+    window.image = image;
+    // this.imageService.remove(image.image._id)
+    //                 .then((result) => {
+    //                   if (result.data.ok == 1) {
+    //                     this.images = this.images.filter((el) => { return el._id != image.image._id; });
+    //                   }
+    //                 });
   }
 
   showMore() {
+    this.isInLoading = true;
     this.loaded = this.skip;
-    this.imgService.list(this.skip, this.amountToRequest).then((db) => {
-      this.imgsToShow = this.imgsToShow.concat(db.data);
-      this.skip = this.skip + this.amountToRequest;
+    this.imageService.list(this.skip, this.amountToRequest).then((result) => {
+      this.images = this.images.concat(result.data);
+      this.skip = this.skip + result.data.length;
+      this.isInLoading = false;
     });
+  }
+
+  $onDestroy() {
+    this.$document.removeEventListener('scroll', this.scrollListener);
   }
 
 }

@@ -1,4 +1,4 @@
-export default class imgService {
+export default class imageService {
   constructor($http) {
     'ngInject';
     this.$http = $http;

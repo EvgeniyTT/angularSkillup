@@ -1,8 +1,8 @@
 import ng from 'angular';
-import NgImgCardDirective from './img-card.directive';
-import NgImgCardService from './img-card.service';
+import ImgCardDirective from './img-card.directive';
+import ImgCardService from './img-card.service';
 
 export default ng.module('imgCard', [])
-  .directive('ngImgGallery', NgImgCardDirective)
-  .service('imgService', NgImgCardService)
+  .directive('imageGallery', ImgCardDirective)
+  .service('imageService', ImgCardService)
   .name;
