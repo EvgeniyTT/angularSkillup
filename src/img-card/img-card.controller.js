@@ -26,6 +26,7 @@ export default class ImageCardController {
 
   deleteImage(scope) {
     let image = this.$element.querySelector('.flipper')[scope.$index];
+    console.log(image);
     // this.imageService.remove(image.image._id)
     //                 .then((result) => {
     //                   if (result.data.ok == 1) {

@@ -1,7 +1,7 @@
 <h1>All Images</h1></br>
 <div class="gallery-list">
   <div class="container-fluid in-list" ng-repeat="image in imageCardController.images"
-  ng-mouseleave="rotateImage = false">
+  ng-mouseleave="rotateImage = false" ng-class="{ondelete: onDelete}">
       <div class="flipper" ng-class="{rotate: rotateImage}">
         <div class="front">
           <img ng-src="{{image.src}}" class="image-rounded" alt="{{image.altText}}"/>
@@ -10,7 +10,7 @@
           <a class="image-action right" ng-click="rotateImage = true">Delete</a>
         </div>
         <div class="back">
-          <a class="delete-confirm left" ng-click="imageCardController.deleteImage(this)">Yes</a>
+          <a class="delete-confirm left" ng-click="onDelete = true; imageCardController.deleteImage(this)">Yes</a>
           <a class="delete-confirm right" ng-click="rotateImage = false">No</a>
         </div>
       </div>
