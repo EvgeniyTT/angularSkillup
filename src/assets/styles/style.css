@@ -66,8 +66,8 @@ body {
 }
 
 .ondelete {
-  display: none;
-  transition: display 2s cubic-bezier(0,.62,.61,1.43);
+  opacity: 0;
+  transition: opacity 1s linear;
 }
 
 .image-action, .delete-confirm {
