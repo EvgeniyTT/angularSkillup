@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import 'dropzone/dist/dropzone.css';
 import ng from 'angular';
 import 'angular-route';
 import 'angular-messages';

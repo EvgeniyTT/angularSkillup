@@ -21,3 +21,38 @@ ng-submit="addImgForm.$valid && addImgController.addImg(); addImgForm.$valid && 
     <button type="submit" class="btn btn-primary pull-right">Add a Photo</button>
   </fieldset>
 </form>
+
+<!-- <form method="post" action="/file-upload">
+  <input type="file" name="file" />
+</form> -->
+
+<!-- <div class="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods" ng-dropzone></div> -->
+
+
+<form action="/" class="dropzone" id="my-awesome-dropzone">
+  <div class="dz-preview dz-file-preview">
+    <div class="dz-details">
+      <div class="dz-filename"><span data-dz-name></span></div>
+      <div class="dz-size" data-dz-size></div>
+      <img data-dz-thumbnail />
+    </div>
+    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+    <div class="dz-success-mark"><span>✔</span></div>
+    <div class="dz-error-mark"><span>✘</span></div>
+    <div class="dz-error-message"><span data-dz-errormessage></span></div>
+  </div>
+</form>
+
+<!-- <ng-dropzone class="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods"></ng-dropzone> -->
+
+<!-- <div class="dropzone" options="dzOptions" callbacks="dzCallbacks" methods="dzMethods" ng-dropzone></div> -->
+
+
+<!-- <div class="col-xs-6 col-xs-offset-3">
+    <div class="well">
+        <form action="" class="dropzone" dropzone="" id="dropzone">
+            <div class="dz-default dz-message">
+            </div>
+        <form>
+    </div>
+</div> -->
