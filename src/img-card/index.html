@@ -4,7 +4,7 @@
   ng-mouseleave="rotateImage = false" ng-class="{ondelete: hide}">
       <div class="flipper" ng-class="{rotate: rotateImage}">
         <div class="front">
-          <img ng-src="src/assets/images/{{image.src}}" class="image-rounded" alt="{{image.altText}}"/>
+          <img ng-src="{{imageCardController.url}}/{{image.src}}" class="image-rounded" alt="{{image.altText}}"/>
           <p class="imageDescription">{{image.description}}</p>
           <a href="#/details/{{image._id}}" class="image-action left">View</a>
           <a class="image-action right" ng-click="rotateImage = true">Delete</a>

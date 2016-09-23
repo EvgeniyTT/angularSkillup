@@ -28,8 +28,8 @@ module.exports = {
       template: './index.html',
       inject: 'body'
     }),
-    // new webpack.DefinePlugin({
-    //   API: JSON.stringify('http://localhost:3000')
-    // })
+    new webpack.DefinePlugin({
+      process.env.API: 'http://10.10.54.24:3001'
+    })
   ]
 };

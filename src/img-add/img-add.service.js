@@ -4,8 +4,7 @@ export default class imageService {
     this.$http = $http;
     // this.url = 'http://localhost:3001';
     // this.url = `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`;
-    console.log(process.env.API);
-    this.url = `${API}:3001`;
+    this.url = 'http://10.10.54.24:3001';
   }
 
   // JSON-SERVER
@@ -40,28 +39,3 @@ export default class imageService {
   add(img) {
     return this.$http.post(`${this.url}/images`, img);
   }
-
-  update(_id, imgData) {
-    return this.$http.put(`${this.url}/images/${_id}`, imgData);
-  }
-
-  save(img) {
-    if (img._id) {
-      return this.update(img._id, img);
-    }
-    return this.add(img);
-  }
-
-  remove(_id) {
-    return this.$http.delete(`${this.url}/images/${_id}`);
-  }
-
-  list(skip, limit) {
-    return this.$http.get(`${this.url}/images/${skip}/${limit}`);
-  }
-
-  get(_id) {
-    return this.$http.get(`${this.url}/images/${_id}`);
-  }
-
-}
