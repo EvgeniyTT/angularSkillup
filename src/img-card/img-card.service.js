@@ -2,10 +2,7 @@ export default class imageService {
   constructor($http) {
     'ngInject';
     this.$http = $http;
-    // this.url = 'http://localhost:3001';
-    // this.url = `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`;
-    console.log(process.env.API);
-    this.url = `${API}:3001`;
+    this.url = 'http://10.10.54.24:3001';
   }
 
   // JSON-SERVER
@@ -38,7 +35,17 @@ export default class imageService {
 
   // NODE
   add(img) {
-    return this.$http.post(`${this.url}/images`, img);
+    // return this.$http.post(`${this.url}/images`, img);
+
+    const req = {
+      method: 'POST',
+      url: `${this.url}/images`,
+      // headers: {
+      //   'Content-Type': 'application/x-www-form-urlencoded'
+      // },
+      data: img
+    }
+    return this.$http(req);
   }
 
   update(_id, imgData) {
