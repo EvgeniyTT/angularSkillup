@@ -40,9 +40,9 @@ export default class imageService {
     const req = {
       method: 'POST',
       url: `${this.url}/images`,
-      // headers: {
-      //   'Content-Type': 'application/x-www-form-urlencoded'
-      // },
+      // headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+      // headers: { 'Content-Type': 'multipart/form-data' },
+      // headers: {'Content-Type': undefined },
       data: img
     }
     return this.$http(req);
