@@ -35,17 +35,7 @@ export default class imageService {
 
   // NODE
   add(img) {
-    // return this.$http.post(`${this.url}/images`, img);
-
-    const req = {
-      method: 'POST',
-      url: `${this.url}/images`,
-      // headers: {'Content-Type': 'application/x-www-form-urlencoded' },
-      // headers: { 'Content-Type': 'multipart/form-data' },
-      // headers: {'Content-Type': undefined },
-      data: img
-    }
-    return this.$http(req);
+    return this.$http.post(`${this.url}/images`, img);
   }
 
   update(_id, imgData) {

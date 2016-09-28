@@ -1,7 +1,6 @@
 import ng from 'angular';
-// import 'ngdropzone';
 import NgImgAddDirective from './img-add.directive';
 
-export default ng.module('addImgForm', [])
+export default ng.module('addImgForm', ['ngImgCrop'])
   .directive('ngImgAddForm', NgImgAddDirective)
   .name;

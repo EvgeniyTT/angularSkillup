@@ -24,6 +24,7 @@
     "json-server": "^0.8.18",
     "mongodb": "^2.2.8",
     "mongoose": "^4.5.10",
+    "ng-img-crop-full-extended": "^0.6.1",
     "ngdropzone": "^1.0.7"
   },
   "devDependencies": {

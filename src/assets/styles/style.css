@@ -219,3 +219,8 @@ img.img-details {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+/*-----------CROP---------*/
+.cropWrapper {
+  height: 300px;
+}
