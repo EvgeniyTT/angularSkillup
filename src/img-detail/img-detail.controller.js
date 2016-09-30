@@ -10,8 +10,7 @@ export default class NgImageDetailController {
   $onInit() {
     this.imageService.get(this.$routeParams._id).then((db) => {
       this.img = db.data;
-      console.log(this.img);
+      this.imgPath = `${API_HOST}/origin/${this.img._id.slice(0,8)}/${this.img._id.slice(8,16)}/${this.img._id.slice(16,24)}.jpg`;
     });
   }
-
 }

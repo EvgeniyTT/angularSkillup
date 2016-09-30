@@ -4,10 +4,11 @@
     <span class="glyphicon glyphicon-chevron-left"></span>
   </a>
   <div class="content">
-    <img ng-src="http://10.10.54.24:3001/{{imgDetailController.img.src}}" class="img-rounded img-details" alt="{{imgDetailController.img.altText}}"/>
+    <img ng-src="{{imgDetailController.imgPath}}"
+    class="img-rounded img-details" alt="{{imgDetailController.img.altText}}"/>
     <div class="imgDetailInfo">
+      <p><b>Name:</b> {{imgDetailController.img.name}}</p>
       <p><b>Description:</b> {{imgDetailController.img.description}}</p>
-      <p><b>Source:</b> {{imgDetailController.img.src}}</p>
       <p><b>Date added:</b> {{imgDetailController.img.dateAdded}}</p>
     </div>
   </div>

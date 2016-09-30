@@ -21,7 +21,7 @@ export default class ImageCardController {
         this.showMore();
       }
     };
-    this.url = 'http://10.10.54.24:3001';
+    this.url = API_HOST;
   }
 
   $onInit() {

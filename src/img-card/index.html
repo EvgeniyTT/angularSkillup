@@ -4,8 +4,9 @@
   ng-mouseleave="rotateImage = false" ng-class="{ondelete: hide}">
       <div class="flipper" ng-class="{rotate: rotateImage}">
         <div class="front">
-          <img ng-src="{{imageCardController.url}}/{{image.src}}" class="image-rounded" alt="{{image.altText}}"/>
-          <p class="imageDescription">{{image.description}}</p>
+          <img ng-src="{{imageCardController.url}}/thumbnails/{{image._id.slice(0,8)}}/{{image._id.slice(8,16)}}/{{image._id.slice(16,24)}}.jpg"
+          class="image-rounded" alt="{{image.altText}}"/>
+          <p class="imageDescription">{{image.name}}</p>
           <a href="#/details/{{image._id}}" class="image-action left">View</a>
           <a class="image-action right" ng-click="rotateImage = true">Delete</a>
         </div>

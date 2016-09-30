@@ -29,7 +29,7 @@ module.exports = {
       inject: 'body'
     }),
     new webpack.DefinePlugin({
-      process.env.API: 'http://10.10.54.24:3001'
+      API_HOST: JSON.stringify('http://10.10.54.24:3001')
     })
   ]
 };

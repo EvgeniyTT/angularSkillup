@@ -1,6 +1,5 @@
 import Dropzone from 'dropzone';
 
-
 Dropzone.autoDiscover = false;
 
 export default class NgImageAddController {
@@ -10,32 +9,50 @@ export default class NgImageAddController {
     this.$location = $location;
     this.$http = $http;
     this.$scope = $scope;
-    this.myImage = 'https://avatars.githubusercontent.com/u/4883612?v=3';
+    this.myImage = '';
     this.myCroppedImage = ''; // in this variable you will have dataUrl of cropped area.
+    this.savedImage = {};
   }
 
   $onInit() {
-    window.onload = () => {
-      this.myDropzone = new Dropzone("#my-awesome-dropzone", {
-        url: "http://10.10.54.24:3001/images",
-        autoProcessQueue: false
-      });
-      this.myDropzone.on('complete', (file) => {
-        console.log('COMPLETED');
-      });
-      this.myDropzone.on('thumbnail', (file, dataUrl) => {
-        this.myImage = file;
+    this.myDropzone = new Dropzone('#my-awesome-dropzone', {
+      url: `${API_HOST}/images`,
+      autoProcessQueue: false
+    });
+    this.myDropzone.on('thumbnail', (file, dataUrl) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        this.myImage = reader.result;
         this.$scope.$digest();
-      });
-      this.myDropzone.on('error', (file, err) => { console.log('error.'); console.log(err); });
-    }
+      }
+    });
+    this.myDropzone.on('error', (file, err) => { console.log('error', err); });
   }
 
   addImg() {
-    const image = { name: this.name, description: this.description, data: this.myCroppedImage };
-    const currentDate = new Date();
-    image.dateAdded = [currentDate.getMonth() + 1, currentDate.getDate(), currentDate.getFullYear()].join('/');
-    this.imageService.save(image);
+    const image = {
+      name: this.name,
+      description: this.description,
+      data: this.myImage,
+      dateAdded: new Date(),
+      thumbnailData: this.myCroppedImage,
+      thumbnailX: this.$scope.cropper.cropImageLeft,
+      thumbnailY: this.$scope.cropper.cropImageTop,
+      thumbnailWidth: this.$scope.cropper.cropImageWidth,
+      thumbnailHeight: this.$scope.cropper.cropImageHeight,
+    };
+    this.imageService.save(image).then((result) => {
+      this.savedImage.id = result.data._id;
+      this.savedImage.name = result.data.name;
+      this.savedImage.description = result.data.description;
+      this.savedImage.dateAdded = result.data.dateAdded;
+      this.saved = true;
+      setTimeout(() => {
+        this.saved = false;
+        this.$scope.$digest();
+      }, 3000);
+    });
     // .then(() => { this.refreshListOnSave(); }); // using 'scope'
     // this.imageService.save(image).then(() => { this.imgCardController.$onInit(); }); // using 'require'
     this.name = '';
