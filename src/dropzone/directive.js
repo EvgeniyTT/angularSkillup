@@ -6,4 +6,7 @@ export default () => ({
   template,
   controller,
   controllerAs: 'dropzoneController',
+  scope: {
+    upperController: '=',
+  },
 });
