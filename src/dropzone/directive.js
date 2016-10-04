@@ -1,12 +1,11 @@
-import template from './index.html';
 import controller from './controller';
 
 export default () => ({
-  restrict: 'E',
-  template,
+  restrict: 'AC',
   controller,
   controllerAs: 'dropzoneController',
   scope: {
-    upperController: '=',
+    setImage: '&',
   },
+  bindToController: true
 });

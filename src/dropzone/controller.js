@@ -10,8 +10,7 @@ export default class dropzoneController {
   }
 
   $onInit() {
-    // this.myDropzone = new Dropzone(this.$element.find('#my-awesome-dropzone')[0], {
-    this.myDropzone = new Dropzone(this.$element.find('form')[0], {
+    this.myDropzone = new Dropzone(this.$element[0], {
       url: `${API_HOST}/images`,
       autoProcessQueue: false
     });
@@ -19,8 +18,7 @@ export default class dropzoneController {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        this.$scope.upperController.myImage = reader.result;
-        this.$scope.upperController.$scope.$digest();
+        this.setImage({ image: reader.result });
       };
     });
     this.myDropzone.on('error', (file, err) => { console.log('error', err); });
