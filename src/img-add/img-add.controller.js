@@ -13,7 +13,6 @@ export default class NgImageAddController {
 
   setImage(image) {
     this.myImage = image;
-    this.$scope.$digest();
   }
 
   addImg() {
