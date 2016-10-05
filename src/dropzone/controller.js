@@ -7,13 +7,11 @@ export default class dropzoneController {
     'ngInject';
     this.$scope = $scope;
     this.$element = $element;
+    this.url = API_HOST;
   }
 
   $onInit() {
-    this.myDropzone = new Dropzone(this.$element[0], {
-      url: `${API_HOST}/images`,
-      autoProcessQueue: false
-    });
+    this.myDropzone = new Dropzone(this.$element[0], { autoProcessQueue: false });
     this.myDropzone.on('thumbnail', (file, dataUrl) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -23,4 +21,10 @@ export default class dropzoneController {
     });
     this.myDropzone.on('error', (file, err) => { console.log('error', err); });
   }
+
+  $onDestroy() {
+    this.$element[0].off(); // remove event listeners from the dropzone
+    this.myDropzone.destroy();
+  }
+
 }
