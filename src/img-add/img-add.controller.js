@@ -1,5 +1,5 @@
 export default class NgImageAddController {
-  constructor(imageService, $location, $http, $scope) {
+  constructor(imageService, $location, $http, $scope, $sce) {
     'ngInject';
     this.imageService = imageService;
     this.$location = $location;
@@ -8,6 +8,7 @@ export default class NgImageAddController {
     this.myImage = '';
     this.myCroppedImage = ''; // in this variable you will have dataUrl of cropped area.
     this.savedImage = {};
+    this.imageUrl = $sce.trustAsResourceUrl(`${API_HOST}/images`);
   }
 
   setImage(image) {

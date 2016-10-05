@@ -7,7 +7,6 @@ export default class dropzoneController {
     'ngInject';
     this.$scope = $scope;
     this.$element = $element;
-    this.url = API_HOST;
   }
 
   $onInit() {
