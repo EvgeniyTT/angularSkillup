@@ -15,7 +15,7 @@ export default class dropzoneController {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        this.$scope.$apply(this.setImage({ image: reader.result }));
+        this.$scope.$apply(() => { this.setImage({ image: reader.result }); });
       };
     });
     this.myDropzone.on('error', (file, err) => { console.log('error', err); });
